@@ -1,0 +1,22 @@
+h1 {
+    color: red;
+    text-align: center;
+}
+body {
+    background-color: black;
+    color: red;
+}
+p a {
+    color: rgb(148, 3, 3);
+}
+img {
+    width: 200px;
+    height: 200px;
+}
+/*uniquement les li dans li*/
+li li {
+    font-style: italic;
+}
+.retour a {
+    color: yellow;
+}
