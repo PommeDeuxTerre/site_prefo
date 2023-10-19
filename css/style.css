@@ -20,3 +20,6 @@ li li {
 .retour a {
     color: yellow;
 }
+p[class] {
+    color: brown;
+}
