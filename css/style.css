@@ -1,0 +1,27 @@
+body {
+    background-color: #21262d ;
+}
+h1 {
+    color: red;
+    text-align: center;
+    font-size: 4em;
+    font-weight: 800;
+}
+nav[id="page-nav"] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+nav[id="page-nav"] > a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 2em;
+    padding: 14px ;
+    width: 4em;
+    color: black;
+    background-color: red;
+}
+nav[id="page-nav"] > a:hover {
+    background: linear-gradient(90deg, red, orange);
+    cursor: wait;
+}
