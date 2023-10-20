@@ -1,6 +1,15 @@
-var player_turn = 1;
+var player_turn = 2;
+grid = [
+    1,0,0,
+    0,0,0,
+    0,0,0];
+game_finish = false;
 function ttt_click(id)
 {
+    if (game_finish)
+    {
+        return;
+    }
     if (document.getElementById(id).className != "void-button")
     {
         return;
@@ -13,9 +22,22 @@ function ttt_click(id)
     {
         document.getElementById(id).className= "player2";
     }
+    //update the grid
+    button_number = Number(id[7])-1;
+    grid[button_number] = player_turn;
     player_turn = player_turn%2+1;
+    best_move = [-1];
+    //bot turn
+    bot(grid, player_turn, best_move);
+    document.getElementById("button-"+(best_move[0]+1)).className = "player"+player_turn;
+    grid[best_move] = player_turn;
+    player_turn = player_turn%2+1
+    //if game is finish
+    if (is_winning(grid) || is_draw(grid))
+    {
+        game_finish=true;
+    }
 }
-
 
 
 function get_moves(grid)
@@ -103,10 +125,6 @@ function is_draw(grid)
 }
 
 /*
-grid = [
-    0,0,0,
-    0,0,0,
-    0,0,0];
 a = [1];
 bot(grid, 1, a);
 console.log(a[0]);
