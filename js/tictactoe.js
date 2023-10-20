@@ -33,9 +33,15 @@ function ttt_click(id)
     grid[best_move] = player_turn;
     player_turn = player_turn%2+1
     //if game is finish
-    if (is_winning(grid) || is_draw(grid))
+    if (is_winning(grid))
     {
         game_finish=true;
+        document.getElementById("game_state").innerHTML = "Perdu"
+    }
+    if (is_draw(grid))
+    {
+        game_finish=true;
+        document.getElementById("game_state").innerHTML = "partie nul"
     }
 }
 
@@ -123,9 +129,3 @@ function is_draw(grid)
     }
     return true
 }
-
-/*
-a = [1];
-bot(grid, 1, a);
-console.log(a[0]);
-*/

@@ -7,6 +7,12 @@ h1 {
     font-size: 4em;
     font-weight: 800;
 }
+h2 {
+    color: red;
+    text-align: center;
+    font-size: 3em;
+    font-weight: 800;
+}
 p {
     color: rgb(233, 208, 208);
 }
