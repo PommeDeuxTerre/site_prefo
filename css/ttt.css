@@ -1,0 +1,9 @@
+button {
+    padding: 5em;
+}
+button[class="player1"] {
+    background-color: red;
+}
+button[class="player2"] {
+    background-color: blue;
+}
