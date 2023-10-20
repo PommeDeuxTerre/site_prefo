@@ -37,6 +37,7 @@ function ttt_click(id)
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "Perdu"
+        location.href = "../expo/expo.html";
     }
     if (is_draw(grid))
     {
