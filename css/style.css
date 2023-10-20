@@ -35,8 +35,8 @@ div[class="expo-optimiste"] > p {
     color: #21262d
 }
 div[class="expo-pessimiste"] {
-    background: linear-gradient(180deg, #21262d, #0a0d11);
+    background-color: #21262d ;
 }
 div[class="expo-pessimiste"] > p {
-    color: rgb(233, 208, 208);
+    color: red;
 }
