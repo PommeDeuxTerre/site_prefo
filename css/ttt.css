@@ -1,9 +1,13 @@
-button {
+button[id="reset-button"] {
+}
+button[class="void-button"] {
     padding: 5em;
 }
 button[class="player1"] {
     background-color: red;
+    padding: 5em;
 }
 button[class="player2"] {
     background-color: blue;
+    padding: 5em;
 }

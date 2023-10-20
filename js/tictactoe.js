@@ -41,10 +41,21 @@ function ttt_click(id)
     if (is_draw(grid))
     {
         game_finish=true;
-        document.getElementById("game_state").innerHTML = "partie nul"
+        document.getElementById("game_state").innerHTML = "partie nulle"
     }
 }
 
+function reset()
+{
+    grid = [1,0,0,0,0,0,0,0,0];
+    player_turn = 2;
+    game_finish = false;
+    for (var i=1;i<9;i++)
+    {
+    document.getElementById("button-"+(i+1)).className = "void-button";
+    }
+    document.getElementById("game_state").innerHTML = "En cours";
+}
 
 function get_moves(grid)
 {
