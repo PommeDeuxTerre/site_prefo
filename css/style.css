@@ -25,3 +25,6 @@ nav[id="page-nav"] > a:hover {
     background: linear-gradient(90deg, red, orange);
     cursor: wait;
 }
+p {
+    color: rgb(233, 208, 208);
+}
