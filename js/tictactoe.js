@@ -63,7 +63,7 @@ function reset()
     game_finish = false;
     for (var i=1;i<9;i++)
     {
-    document.getElementById("button-"+(i+1)).className = "void-button";
+    document.getElementById(i).removeAttribute("class");
     }
     document.getElementById("game_state").innerHTML = "En cours";
 }
