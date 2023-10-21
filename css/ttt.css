@@ -21,16 +21,6 @@ red dark : #d90429
     width: 9em;
     height: 9em;
 }
-div[class="bot"] {
-    border: 3px solid #d90429;
-    width: 9em;
-    height: 9em;
-}
-div[class="player"] {
-    border: 3px solid #d90429;
-    width: 9em;
-    height: 9em;
-}
 /*reset button*/
 #button-div {
     text-align: center;

@@ -1,18 +1,19 @@
-var player_turn = 2;
+//init global variables
+var player_turn = 1;
+var game_finish = false;
 grid = [
-    1,0,0,
+    0,0,0,
     0,0,0,
     0,0,0];
-game_finish = false;
 set_grid()
 
+//get the bot move and update the board
 function bot_play()
 {
     best_move = [-1];
     bot(grid, player_turn, best_move);
 
     var square = document.getElementById(best_move[0])
-    square.className = "bot";
 
     const img = document.createElement("img")
     img.src="../img/cercle.png"
@@ -23,16 +24,15 @@ function bot_play()
     console.log(grid)
 }
 
+//update the board with the player move
 function player_play(id)
 {
     //update the local grid
     square_number = Number(id);
     grid[square_number] = player_turn;
-    console.log(grid)
     player_turn = player_turn%2+1;
     //update the html grid
     var square = document.getElementById(id)
-    square.className= "player";
 
     const img = document.createElement("img")
     img.src="../img/cross.png"
@@ -46,11 +46,12 @@ function click(square)
     {
         return;
     }
-    if (document.getElementById(id).className)
+    //if not a possible move
+    if (grid[id]!=0)
     {
-        console.log(document.getElementById(id).className)
         return;
     }
+    //if the bot didn't play yet
     if (player_turn!=2)
     {
         return
@@ -63,14 +64,14 @@ function click(square)
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "Perdu"
-        //location.href = "../expo/expo.html";
+        location.href = "../expo/expo.html";
     }
     if (is_draw(grid))
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "partie nulle"
+        //put the reset button
         const button_div = document.querySelector("#button-div")
-        console.log(button_div.childNodes)
         if (button_div.childNodes.length == 0)
         {
             const button = document.createElement("button")
@@ -91,8 +92,8 @@ function reset()
     {
         square = document.getElementById(i)
         square.removeAttribute("class");
+        //reset images
         var children = square.children
-        console.log(children)
         if (children[0])
         {
             square.removeChild(children[0])
@@ -114,18 +115,12 @@ function set_grid()
             const square = document.createElement("div")
             square.addEventListener("click",function(){click(this)})
             square.id = ""+(i*3+j)
-            if (i==j && i==0)
-            {
-                square.className="bot"
-                const img = document.createElement("img")
-                img.src="../img/cercle.png"
-                square.appendChild(img)
-            }
             line_html.appendChild(square)
         }
         grid_html.appendChild(line_html)
     }
     document.body.appendChild(grid_html)
+    bot_play()
 }
 
 function get_moves(grid)
