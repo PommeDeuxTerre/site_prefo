@@ -35,7 +35,7 @@ nav[id="page-nav"] > a {
     font-size: 2em;
     padding: 14px ;
     width: 4em;
-    color: black;
+    color: #2b2d42;
     background-color: #ef233c;
 }
 nav[id="page-nav"] > a:hover {
