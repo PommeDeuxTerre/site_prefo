@@ -9,3 +9,6 @@ button[class="player2"] {
     background-color: blue;
     padding: 5em;
 }
+ #grid {
+    text-align: center;
+}
