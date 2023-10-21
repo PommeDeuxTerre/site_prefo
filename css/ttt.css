@@ -22,13 +22,11 @@ red dark : #d90429
     height: 9em;
 }
 div[class="bot"] {
-    background-color: #ef233c;
     border: 3px solid #d90429;
     width: 9em;
     height: 9em;
 }
 div[class="player"] {
-    background-color: #edf2f4;
     border: 3px solid #d90429;
     width: 9em;
     height: 9em;
@@ -49,4 +47,7 @@ div[class="player"] {
 }
 #button-div > button:hover {
     background: linear-gradient(90deg, #ef233c, #d90429);
+}
+img {
+    max-width: 100%;
 }

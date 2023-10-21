@@ -5,6 +5,40 @@ grid = [
     0,0,0];
 game_finish = false;
 set_grid()
+
+function bot_play()
+{
+    best_move = [-1];
+    bot(grid, player_turn, best_move);
+
+    var square = document.getElementById(best_move[0])
+    square.className = "bot";
+
+    const img = document.createElement("img")
+    img.src="../img/cercle.png"
+    square.appendChild(img)
+
+    grid[best_move] = player_turn;
+    player_turn = player_turn%2+1
+    console.log(grid)
+}
+
+function player_play(id)
+{
+    //update the local grid
+    square_number = Number(id);
+    grid[square_number] = player_turn;
+    console.log(grid)
+    player_turn = player_turn%2+1;
+    //update the html grid
+    var square = document.getElementById(id)
+    square.className= "player";
+
+    const img = document.createElement("img")
+    img.src="../img/cross.png"
+    square.appendChild(img)
+}
+
 function click(square)
 {
     var id = square.id
@@ -17,28 +51,19 @@ function click(square)
         console.log(document.getElementById(id).className)
         return;
     }
-    if (player_turn==2)
+    if (player_turn!=2)
     {
-        document.getElementById(id).className= "player";
+        return
     }
-    //update the grid
-    square_number = Number(id);
-    grid[square_number] = player_turn;
-    console.log(grid)
-    player_turn = player_turn%2+1;
-    best_move = [-1];
+    player_play(id)
     //bot turn
-    bot(grid, player_turn, best_move);
-    document.getElementById(best_move[0]).className = "bot";
-    grid[best_move] = player_turn;
-    console.log(grid)
-    player_turn = player_turn%2+1
+    bot_play()
     //if game is finish
     if (is_winning(grid))
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "Perdu"
-        location.href = "../expo/expo.html";
+        //location.href = "../expo/expo.html";
     }
     if (is_draw(grid))
     {
@@ -61,9 +86,17 @@ function reset()
     grid = [1,0,0,0,0,0,0,0,0];
     player_turn = 2;
     game_finish = false;
+    var square
     for (var i=1;i<9;i++)
     {
-    document.getElementById(i).removeAttribute("class");
+        square = document.getElementById(i)
+        square.removeAttribute("class");
+        var children = square.children
+        console.log(children)
+        if (children[0])
+        {
+            square.removeChild(children[0])
+        }
     }
     document.getElementById("game_state").innerHTML = "En cours";
 }
@@ -84,6 +117,9 @@ function set_grid()
             if (i==j && i==0)
             {
                 square.className="bot"
+                const img = document.createElement("img")
+                img.src="../img/cercle.png"
+                square.appendChild(img)
             }
             line_html.appendChild(square)
         }
