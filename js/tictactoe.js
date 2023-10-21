@@ -5,33 +5,33 @@ grid = [
     0,0,0];
 game_finish = false;
 set_grid()
-function ttt_click(id)
+function click(square)
 {
+    var id = square.id
     if (game_finish)
     {
         return;
     }
-    if (document.getElementById(id).className != "void-button")
+    if (document.getElementById(id).className)
     {
+        console.log(document.getElementById(id).className)
         return;
-    }
-    if (player_turn==1)
-    {
-        document.getElementById(id).className= "player1";
     }
     if (player_turn==2)
     {
-        document.getElementById(id).className= "player2";
+        document.getElementById(id).className= "player";
     }
     //update the grid
-    button_number = Number(id[7])-1;
-    grid[button_number] = player_turn;
+    square_number = Number(id);
+    grid[square_number] = player_turn;
+    console.log(grid)
     player_turn = player_turn%2+1;
     best_move = [-1];
     //bot turn
     bot(grid, player_turn, best_move);
-    document.getElementById("button-"+(best_move[0]+1)).className = "player"+player_turn;
+    document.getElementById(best_move[0]).className = "bot";
     grid[best_move] = player_turn;
+    console.log(grid)
     player_turn = player_turn%2+1
     //if game is finish
     if (is_winning(grid))
@@ -79,7 +79,12 @@ function set_grid()
         for (var j=0;j<3;j++)
         {
             const square = document.createElement("div")
-            square.className="void-button_ttt"
+            square.addEventListener("click",function(){click(this)})
+            square.id = ""+(i*3+j)
+            if (i==j && i==0)
+            {
+                square.className="bot"
+            }
             line_html.appendChild(square)
         }
         grid_html.appendChild(line_html)
