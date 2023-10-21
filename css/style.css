@@ -32,7 +32,6 @@ nav[id="page-nav"] > a {
 }
 nav[id="page-nav"] > a:hover {
     background: linear-gradient(90deg, red, orange);
-    cursor: wait;
 }
 div[class="expo-optimiste"] {
     background-color: rgb(233, 208, 208);

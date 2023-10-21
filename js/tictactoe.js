@@ -43,6 +43,15 @@ function ttt_click(id)
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "partie nulle"
+        const button_div = document.querySelector("#button-div")
+        console.log(button_div.childNodes)
+        if (button_div.childNodes.length == 0)
+        {
+            const button = document.createElement("button")
+            button_div.appendChild(button)
+            button.innerHTML = "reset"
+            button.addEventListener("click", reset)
+        }
     }
 }
 
