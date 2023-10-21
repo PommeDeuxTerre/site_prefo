@@ -1,11 +1,43 @@
-button[class="void-button"] {
-    padding: 5em;
+/* colors
+black : #2b2d42
+grey : #8d99ae
+white : #edf2f4
+red clear : #ef233c
+red dark : #d90429
+*/
+.grid_ttt {
+    display: flex;
+    flex-direction: column;
 }
-button[class="player1"] {
-    background-color: red;
-    padding: 5em;
+.line_ttt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
-button[class="player2"] {
-    background-color: blue;
-    padding: 5em;
+.line_ttt > div {
+    background-color: #8d99ae;
+    border: 3px solid #d90429;
+    width: 9em;
+    height: 9em;
+}
+/*reset button*/
+#button-div {
+    text-align: center;
+}
+#button-div > button {
+    border-width: 0px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2em;
+    padding: 14px ;
+    width: 4em;
+    color: #2b2d42;
+    background-color: #ef233c;
+}
+#button-div > button:hover {
+    background: linear-gradient(90deg, #ef233c, #d90429);
+}
+img {
+    max-width: 100%;
 }

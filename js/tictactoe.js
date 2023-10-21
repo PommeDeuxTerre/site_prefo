@@ -1,37 +1,64 @@
-var player_turn = 2;
+//init global variables
+var player_turn = 1;
+var game_finish = false;
 grid = [
-    1,0,0,
+    0,0,0,
     0,0,0,
     0,0,0];
-game_finish = false;
-function ttt_click(id)
+set_grid()
+
+//get the bot move and update the board
+function bot_play()
 {
+    best_move = [-1];
+    bot(grid, player_turn, best_move);
+
+    var square = document.getElementById(best_move[0])
+
+    const img = document.createElement("img")
+    img.src="../img/cercle.png"
+    square.appendChild(img)
+
+    grid[best_move] = player_turn;
+    player_turn = player_turn%2+1
+    console.log(grid)
+}
+
+//update the board with the player move
+function player_play(id)
+{
+    //update the local grid
+    square_number = Number(id);
+    grid[square_number] = player_turn;
+    player_turn = player_turn%2+1;
+    //update the html grid
+    var square = document.getElementById(id)
+
+    const img = document.createElement("img")
+    img.src="../img/cross.png"
+    square.appendChild(img)
+}
+
+function click(square)
+{
+    var id = square.id
     if (game_finish)
     {
         return;
     }
-    if (document.getElementById(id).className != "void-button")
+    //if not a possible move
+    if (grid[id]!=0)
     {
         return;
     }
-    if (player_turn==1)
+    //if the bot didn't play yet
+    if (player_turn!=2)
     {
-        document.getElementById(id).className= "player1";
+        return
     }
-    if (player_turn==2)
-    {
-        document.getElementById(id).className= "player2";
-    }
-    //update the grid
-    button_number = Number(id[7])-1;
-    grid[button_number] = player_turn;
-    player_turn = player_turn%2+1;
-    best_move = [-1];
+    player_play(id)
     //bot turn
-    bot(grid, player_turn, best_move);
-    document.getElementById("button-"+(best_move[0]+1)).className = "player"+player_turn;
-    grid[best_move] = player_turn;
-    player_turn = player_turn%2+1
+    bot_play()
     //if game is finish
     if (is_winning(grid))
     {
@@ -43,6 +70,15 @@ function ttt_click(id)
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "partie nulle"
+        //put the reset button
+        const button_div = document.querySelector("#button-div")
+        if (button_div.childNodes.length == 0)
+        {
+            const button = document.createElement("button")
+            button_div.appendChild(button)
+            button.innerHTML = "reset"
+            button.addEventListener("click", reset)
+        }
     }
 }
 
@@ -51,11 +87,40 @@ function reset()
     grid = [1,0,0,0,0,0,0,0,0];
     player_turn = 2;
     game_finish = false;
+    var square
     for (var i=1;i<9;i++)
     {
-    document.getElementById("button-"+(i+1)).className = "void-button";
+        square = document.getElementById(i)
+        square.removeAttribute("class");
+        //reset images
+        var children = square.children
+        if (children[0])
+        {
+            square.removeChild(children[0])
+        }
     }
     document.getElementById("game_state").innerHTML = "En cours";
+}
+
+function set_grid()
+{
+    const grid_html = document.createElement("div",id="grid")
+    grid_html.className="grid_ttt"
+    for (var i=0;i<3;i++)
+    {
+        const line_html = document.createElement("div")
+        line_html.className="line_ttt"
+        for (var j=0;j<3;j++)
+        {
+            const square = document.createElement("div")
+            square.addEventListener("click",function(){click(this)})
+            square.id = ""+(i*3+j)
+            line_html.appendChild(square)
+        }
+        grid_html.appendChild(line_html)
+    }
+    document.body.appendChild(grid_html)
+    bot_play()
 }
 
 function get_moves(grid)
