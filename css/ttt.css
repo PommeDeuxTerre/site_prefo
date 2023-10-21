@@ -1,29 +1,23 @@
-button[class="void-button"] {
-    padding: 5em;
+/* colors
+black : #2b2d42
+grey : #8d99ae
+white : #edf2f4
+red clear : #ef233c
+red dark : #d90429
+*/
+.grid_ttt {
+    display: flex;
+    flex-direction: column;
 }
-button[class="player1"] {
-    background-color: red;
-    padding: 5em;
+.void-button_ttt{
+    background-color: #8d99ae;
+    border: 3px solid #d90429;
+    width: 15em;
+    height: 15em;
 }
-button[class="player2"] {
-    background-color: blue;
-    padding: 5em;
-}
-#grid {
-    text-align: center;
-}
-#button-div {
-    text-align: center;
-}
-#button-div > button {
-    text-align: center;
-    text-decoration: none;
-    font-size: 2em;
-    padding: 14px ;
-    width: 4em;
-    color: black;
-    background-color: red;
-}
-#button-div > button:hover {
-    background: linear-gradient(90deg, red, orange);
+.line_ttt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 }

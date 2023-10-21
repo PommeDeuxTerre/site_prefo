@@ -4,6 +4,7 @@ grid = [
     0,0,0,
     0,0,0];
 game_finish = false;
+set_grid()
 function ttt_click(id)
 {
     if (game_finish)
@@ -65,6 +66,25 @@ function reset()
     document.getElementById("button-"+(i+1)).className = "void-button";
     }
     document.getElementById("game_state").innerHTML = "En cours";
+}
+
+function set_grid()
+{
+    const grid_html = document.createElement("div",id="grid")
+    grid_html.className="grid_ttt"
+    for (var i=0;i<3;i++)
+    {
+        const line_html = document.createElement("div")
+        line_html.className="line_ttt"
+        for (var j=0;j<3;j++)
+        {
+            const square = document.createElement("div")
+            square.className="void-button_ttt"
+            line_html.appendChild(square)
+        }
+        grid_html.appendChild(line_html)
+    }
+    document.body.appendChild(grid_html)
 }
 
 function get_moves(grid)

@@ -1,20 +1,28 @@
+/* colors
+black : #2b2d42
+grey : #8d99ae
+white : #edf2f4
+red clear : #ef233c
+red dark : #d90429
+*/
+
 body {
-    background-color: #21262d ;
+    background-color: #2b2d42;
 }
 h1 {
-    color: red;
+    color: #ef233c;
     text-align: center;
     font-size: 4em;
     font-weight: 800;
 }
 h2 {
-    color: red;
+    color: #ef233c;
     text-align: center;
     font-size: 3em;
     font-weight: 800;
 }
 p {
-    color: rgb(233, 208, 208);
+    color: #edf2f4;
 }
 nav[id="page-nav"] {
     display: flex;
@@ -28,20 +36,20 @@ nav[id="page-nav"] > a {
     padding: 14px ;
     width: 4em;
     color: black;
-    background-color: red;
+    background-color: #ef233c;
 }
 nav[id="page-nav"] > a:hover {
-    background: linear-gradient(90deg, red, orange);
+    background: linear-gradient(90deg, #ef233c, #d90429);
 }
 div[class="expo-optimiste"] {
-    background-color: rgb(233, 208, 208);
+    background-color: #edf2f4;
 }
 div[class="expo-optimiste"] > p {
-    color: #21262d
+    color: #2b2d42
 }
 div[class="expo-pessimiste"] {
-    background-color: #21262d ;
+    background-color: #2b2d42 ;
 }
 div[class="expo-pessimiste"] > p {
-    color: red;
+    color: #ef233c;
 }
