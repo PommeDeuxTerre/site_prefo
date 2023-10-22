@@ -21,6 +21,12 @@ h2 {
     font-size: 3em;
     font-weight: 800;
 }
+h3 {
+    color: #ef233c;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 800;
+}
 p {
     color: #edf2f4;
 }
@@ -48,5 +54,10 @@ div[class="paragraphes"] {
 }
 div[class="paragraphes"] > p {
     width: 40em;
+    max-width: 100%;
     font-size: 1.4em;
+}
+div[class="paragraphes"] > h3 {
+    width: 22.4em;
+    text-align: left;
 }
