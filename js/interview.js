@@ -45,6 +45,18 @@ en_blinkbat_answers = [
     "building up my problem-solving skills"
 ]
 fr_blinkbat_answers = [
+    "notre secteur d'activité est la réparation de piscine et la plomberie",
+    "je suis un ingénieur logiciel, je fais des apps à l'usage de l'entreprise et également certaines apps déstiné au clients",
+    "Le plus compliqué c'est souvent quand j'essaie de travailler sur un jeux, après ça travailler sur du code dépassé/obsolète ou qui a besoin d'être refactoriser peut aussi représenter un défi",
+    "Ces temps ci, j'utilise C# avec blazor et parfois typescript",
+    "j'adore les deux C# et typescript",
+    "ça dépend, souvent je commence avec un café et une réunion quotidienne, puis je travail soit sur des tickets, soit je vais en réunions ou les deux",
+    "la flexibilité et les problèmes intéressants à résoudre",
+    "les réunions!",
+    "être capable de résoudre des problèmes sans devoir attendre pour se faire aider",
+    "j'ai été à un bootcamp pour y batir mes compétences",
+    "j'en ai pas mal. probablement un jeux",
+    "construire mes compétence dans la résolution de problèmes"
 ]
 en_andrei_answers = [
     "we offer a complete erp system to small to mid size business.",
