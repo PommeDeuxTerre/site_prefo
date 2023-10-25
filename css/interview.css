@@ -1,4 +1,17 @@
-p {
-    text-align: center;
+.answer {
     font-size: 2em;
+    text-align: end;
+    max-width: 100%;
+    width: 40%;
+    margin-left: 40%;
+    margin-right: 20%;
+}
+h3 {
+    text-align: start;
+    max-width: 100%;
+    width: 40%;
+    margin-left: 20%;
+    margin-right: 40%;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
