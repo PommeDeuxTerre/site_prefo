@@ -41,6 +41,8 @@ red dark : #d90429
 }
 #interview > .clicked{
     background-color: #d90429;
+    border-color: #ef233c;
+    border-width: 2px;
 }
 .answer {
     font-size: 2em;
