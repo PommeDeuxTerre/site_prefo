@@ -1,7 +1,7 @@
 var interviewed = ["blinkbat", "andrei"]
 var questions_number = 12
 interview_index= 0
-lang_index = 0
+lang_index = 1
 english_questions = [
     "What's the main activity of your company?",
     "What's your main function and what does it mean?",
@@ -160,4 +160,4 @@ function click_lang(element)
 }
 
 activate_buttons()
-set_interview(0, 0)
+set_interview(lang_index, interview_index)
