@@ -3,7 +3,7 @@ var questions_number = 12
 interview_index= 0
 lang_index = 0
 english_questions = [
-    "What's the name of your company and what is its main activity?",
+    "What's the main activity of your company?",
     "What's your main function and what does it mean?",
     "What's the hardest thing you have coded?",
     "wich langague and frameworks do you use?",
@@ -17,6 +17,18 @@ english_questions = [
     "What's the most helpfull thing that has help you to get better at code"
 ]
 french_questions = [
+    "Quelle est l'activité principal de votre entreprise?",
+    "Quel est votre boulot et en quoi consiste t'il?",
+    "Quelle est la chose la plus complexe que vous ayez codé?",
+    "Quel langague et frameworks utiliser vous?",
+    "Lequel est votre préféré?",
+    "Quelles sont les différentes étapes qui constitue votre journée?",
+    "Qu'est ce que vous préférer dans votre métier?",
+    "À l'opposé qu'est ce que vous aimer le moins?",
+    "Quelle est la compétence qui vous semble la plus importante en tant que developpeur et pourquoi?",
+    "Comment avez vous découvert l'univer du code?",
+    "Avez vous un projet code dans un coin de votre tête si oui lequel?",
+    "Quelle est la chose qui vous a le plus aider à progresser en code?"
 ]
 en_blinkbat_answers = [
     "our line of business is pool repair and plumbing",
