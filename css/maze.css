@@ -1,0 +1,16 @@
+.maze {
+    display: flex;
+    flex-direction: column;
+}
+.line_maze {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.line_maze > div {
+    background-color: #8d99ae;
+    border: 3px solid #d90429;
+    width: 3em;
+    height: 3em;
+}
