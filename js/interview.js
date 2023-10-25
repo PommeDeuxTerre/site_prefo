@@ -1,7 +1,7 @@
 var interviewed = ["blinkbat", "andrei"]
 var questions_number = 12
-interview_number = 0
-lang_number = 0
+interview_index= 0
+lang_index = 0
 english_questions = [
     "What's the name of your company and what is its main activity?",
     "What's your main function and what does it mean?",
@@ -84,21 +84,43 @@ function activate_buttons()
 {
     document.getElementById("next").addEventListener("click",next_interview)
     document.getElementById("previous").addEventListener("click",previous_interview)
+    document.getElementById("left_lang").addEventListener("click",function click(){click_lang(this)})
+    document.getElementById("right_lang").addEventListener("click",function click(){click_lang(this)})
 }
 
 function next_interview()
 {
-    interview_number=(interview_number+1)%interviewed.length;
-    set_interview(lang_number, interview_number)
+    interview_index=(interview_index+1)%interviewed.length;
+    set_interview(lang_index, interview_index)
 }
 function previous_interview()
 {
-    interview_number=(interview_number-1)%interviewed.length;
-    if (interview_number<0)
+    interview_index=(interview_index-1)%interviewed.length;
+    if (interview_index<0)
     {
-        interview_number+=interviewed.length
+        interview_index+=interviewed.length
     }
-    set_interview(lang_number, interview_number)
+    set_interview(lang_index, interview_index)
+}
+
+function click_lang(element)
+{
+    const lang_buttons = document.getElementsByClassName("clicked");
+    for (var i=0;i<lang_buttons.length;i++)
+    {
+        lang_buttons[i].className="";
+    }
+    element.className = "clicked";
+    //get new lang index
+    if (element.innerHTML=="en")
+    {
+        lang_index=0;
+    }
+    if (element.innerHTML=="fr")
+    {
+        lang_index=1;
+    }
+    set_interview(lang_index, interview_index)
 }
 
 activate_buttons()
