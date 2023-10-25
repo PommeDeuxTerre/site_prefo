@@ -61,7 +61,7 @@ fr_blinkbat_answers = [
 en_andrei_answers = [
     "we offer a complete erp system to small to mid size business.",
     "mainly web development, working with web apps for bi and apis",
-    "a complete town management plugin for a minecraft server, whiwas unplayed because of how much memory and processing it consumed for a single town.",
+    "a complete town management plugin for a minecraft server, which was unplayed because of how much memory and processing it consumed for a single town.",
     "js/ts and delphi mostly, no frameworks.",
     "ts",
     "development and more development, then tests.",
@@ -70,9 +70,21 @@ en_andrei_answers = [
     "be aware of pitifalls and consequences of their actions",
     "scripting for multiplayer game servers",
     "",
-    "learning how to read documentation, and always going to the d",
+    "learning how to read documentation, and always going to the docs",
 ]
 fr_andrei_answers = [
+    "nous offrons des systemes erp complêts pour les petites et moyennes entreprises",
+    "principalement du développement web avec des applications webs pour des BI(visualisation de données) et des APIs",
+    "un plugin de géstion complète de village pour un serveur minecraft qui n'as jamais été utilisé à cause de la quantité de mémoire et de calcul qu'il nécessitait pour un simple village",
+    "principalement javascript/typescript et delphi, pas de frameworks",
+    "typescript",
+    "du code, encore du code et des tests",
+    "pouvoir voir les choses fonctionner",
+    "quand quelle que chose que j'ai fait cause une erreur",
+    "être au courant des petites erreurs possibles et de leurs répércussions",
+    "en faisant des scripts pour des serveur minecraft multijoueurs",
+    "",
+    "apprendre à lire la documentation, et de toujours aller check la doc"
 ]
 
 var en_answers = [en_blinkbat_answers, en_andrei_answers]
