@@ -6,6 +6,7 @@
     <title>Galerie Photos</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/galerie.css">
+    <script src="../js/galerie.js" type="text/javascript"></script>
 </head>
 <body>
         <nav id="page-nav">
@@ -17,11 +18,13 @@
         </nav>
 	<h1>Galerie</h1>
     <div id="images">
-        <button id="previous"><</button>
-        <img class="photo_expo" src="../img/0.jpg">
-        <img class="photo_expo" src="../img/1.jpg">
-        <img class="photo_expo" src="../img/2.jpg">
-        <button id="next">></button>
+        <button id="previous" onclick="previous_photos()"><</button>
+        <div id="photos">
+            <img class="photo_expo" src="../img/0.jpg">
+            <img class="photo_expo" src="../img/1.jpg">
+            <img class="photo_expo" src="../img/2.jpg">
+        </div>
+        <button id="next" onclick="next_photos()">></button>
     </div>
 </body>
 </html>

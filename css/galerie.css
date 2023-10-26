@@ -5,7 +5,14 @@
     justify-content: center;
 }
 .photo_expo{
-    width: 20%;
+    width: 33.33%;
+    margin: 0;
+}
+#photos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
 }
 #next, #previous {
     margin-left: 10px;
