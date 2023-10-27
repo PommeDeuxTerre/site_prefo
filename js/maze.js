@@ -123,5 +123,6 @@ function maze_generator(index)
 }
 
 set_grid()
-grid[0] = 1
-maze_generator(0)
+var starter_index = get_random(100);
+grid[starter_index] = 1
+maze_generator(starter_index)
