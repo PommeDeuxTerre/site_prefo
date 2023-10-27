@@ -2,6 +2,7 @@ var grid = []
 var moves = [top_wall,left_wall,right_wall,bottom_wall];
 var opposite_moves = [bottom_wall,right_wall,left_wall,top_wall];
 var get_move_dir = [-10,-1,1,10]
+var inverse_move = [3,2,1,0]
 
 function set_grid()
 {
@@ -104,7 +105,7 @@ function play_random_move(index, all_moves)
     //play the move on the html grid
     var index_element = document.getElementById(index)
     var next_element = document.getElementById(index+get_move_dir[move])
-    grid[index+get_move_dir[move]] = 1;
+    grid[index+get_move_dir[move]] = 0;
     moves[move](index_element)
     opposite_moves[move](next_element)
     return move;
@@ -117,6 +118,8 @@ function maze_generator(index)
     while (all_moves!=0)
     {
         move = play_random_move(index, all_moves);
+        grid[index] |= 2**move;
+        grid[index+get_move_dir[move]] |= 2**inverse_move[move]
         maze_generator(index+get_move_dir[move])
         all_moves = get_moves(index)
     }
@@ -124,5 +127,5 @@ function maze_generator(index)
 
 set_grid()
 var starter_index = get_random(100);
-grid[starter_index] = 1
+grid[starter_index] = 0
 maze_generator(starter_index)
