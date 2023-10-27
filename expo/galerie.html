@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galerie Photos</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/galerie.css">
+    <script src="../js/galerie.js" type="text/javascript"></script>
 </head>
 <body>
         <nav id="page-nav">
@@ -15,5 +17,14 @@
             <a href="../expo/galerie.html">galerie</a>
         </nav>
 	<h1>Galerie</h1>
+    <div id="images">
+        <button id="previous" onclick="previous_photos()"><</button>
+        <div id="photos">
+            <img class="photo_expo" src="../img/0.jpg">
+            <img class="photo_expo" src="../img/1.jpg">
+            <img class="photo_expo" src="../img/2.jpg">
+        </div>
+        <button id="next" onclick="next_photos()">></button>
+    </div>
 </body>
 </html>

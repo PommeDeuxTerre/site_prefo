@@ -1,0 +1,29 @@
+#images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.photo_expo{
+    width: 33.33%;
+    margin: 0;
+}
+#photos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+}
+#next, #previous {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0;
+    width: 60px;
+    height: 120px;
+    font-size: 4em;
+    background-color: #ef233c;
+    color: #2b2d42;
+}
+#next:hover, #previous:hover {
+    background: linear-gradient(90deg, #ef233c, #d90429);
+}
