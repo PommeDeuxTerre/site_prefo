@@ -5,6 +5,18 @@ var get_move_dir = [-10,-1,1,10]
 var inverse_move = [3,2,1,0]
 var pacman_pos = 45;
 
+class Node{
+    constructor(dis_pac,dis_cur)
+    {
+        this.dis_pac = dis_pac;
+        this.dis_cur = dis_cur;
+        this.heuristic = dis_pac + dis_cur;
+    }
+}
+
+var explored_nodes = []
+var nun_explored_nodes = []
+
 var cursor_pos = null;
 
 function set_grid()
@@ -144,24 +156,50 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function get_pacman_move(pac_pos)
+function get_best_node()
 {
-    var best_move = 0;
-    var best_score = 100000;
-    var score;
-    for (var i=0;i<4;i++)
+    var best_heur = null;
+    var best_node = null;
+    for (var i=0;i<100;i++)
     {
-        if (grid[pac_pos] & 2**i)
+        if (nun_explored_nodes[i] && (best_heur==null || nun_explored_nodes[i].heuristic>best_heur))
         {
-            score = get_distance(cursor_pos, pac_pos+get_move_dir[i])
-            if (score<best_score)
-            {
-                best_score=score
-                best_move = i
-            }
+            best_heur = nun_explored_nodes[i].heuristic;
+            best_node = i;
         }
     }
-    return best_move;
+    return best_node;
+}
+
+function explore_node(node_index)
+{
+    var previous_node = nun_explored_nodes[node_index]
+    var next_node;
+    for (var i=0;i<4;i++)
+    {
+        next_node = nun_explored_nodes[node_index+get_move_dir[i]]
+        if (next_node==undefined && explored_nodes[node_index]==undefined)
+        {
+            nun_explored_nodes[node_index+get_move_dir[i]] = new Node(previous_node.dis_pac+1,get_distance(node_index+get_move_dir[i], cursor_pos))
+            next_node = nun_explored_nodes[node_index+get_move_dir[i]]
+            console.log("next node:")
+            console.log(next_node)
+        }
+    }
+    explored_nodes[node_index] = nun_explored_nodes[node_index];
+    nun_explored_nodes[node_index]=undefined;
+}
+
+function get_pacman_move()
+{
+    console.log("nun expored nodes");
+    console.log(nun_explored_nodes);
+    console.log("expored nodes");
+    console.log(explored_nodes);
+    var best_node = get_best_node();
+    console.log(best_node);
+    explore_node(best_node);
+    return 0;
 }
 
 async function pacman_move()
@@ -170,12 +208,14 @@ async function pacman_move()
     while (true)
     {
         await sleep(1000)
-        console.log("curseur: "+cursor_pos)
-        console.log("pacman: "+pacman_pos)
+        explored_nodes = []
+        nun_explored_nodes = []
+        nun_explored_nodes[pacman_pos] = new Node(0,get_distance(cursor_pos, pacman_pos))
+
         if (cursor_pos!=null && cursor_pos!=pacman_pos)
         {
             document.getElementById(pacman_pos).style.backgroundColor="#8d99ae"
-            move = pacman_pos+get_move_dir[get_pacman_move(pacman_pos)]
+            move = pacman_pos+get_move_dir[get_pacman_move()]
             document.getElementById(move).style.backgroundColor="yellow"
             pacman_pos = move;
         }
