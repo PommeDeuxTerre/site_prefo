@@ -170,7 +170,7 @@ function get_best_node()
     return best_node;
 }
 
-function explore_node(node_index)
+function explore_node(node_index,cur_pos)
 {
     var previous_node = nun_explored_nodes[node_index]
     var next_node;
@@ -179,9 +179,9 @@ function explore_node(node_index)
         next_node = nun_explored_nodes[node_index+get_move_dir[i]]
         if (next_node==undefined && explored_nodes[node_index+get_move_dir[i]]==undefined && 2**i & grid[node_index])
         {
-            nun_explored_nodes[node_index+get_move_dir[i]] = new Node(node_index+get_move_dir[i],previous_node.dis_pac+1,get_distance(node_index+get_move_dir[i], cursor_pos),previous_node)
+            nun_explored_nodes[node_index+get_move_dir[i]] = new Node(node_index+get_move_dir[i],previous_node.dis_pac+1,get_distance(node_index+get_move_dir[i], cur_pos),previous_node)
             next_node = nun_explored_nodes[node_index+get_move_dir[i]]
-            if (node_index+get_move_dir[i] == cursor_pos)
+            if (node_index+get_move_dir[i] == cur_pos)
             {
                 return node_index+get_move_dir[i];
             }
@@ -209,14 +209,14 @@ function backtrack(index)
     }
 }
 
-function get_pacman_move()
+function get_pacman_move(cur_pos)
 {
     var result=false;
     var best_node;
     while (result==false)
     {
         best_node = get_best_node();
-        result = explore_node(best_node);
+        result = explore_node(best_node,cur_pos);
     }
     return backtrack(result);
 }
@@ -234,7 +234,7 @@ async function pacman_move()
         if (cursor_pos!=null && cursor_pos!=pacman_pos)
         {
             document.getElementById(pacman_pos).style.backgroundColor="#8d99ae"
-            move = pacman_pos+get_move_dir[get_pacman_move()]
+            move = pacman_pos+get_move_dir[get_pacman_move(cursor_pos)]
             document.getElementById(move).style.backgroundColor="yellow"
             pacman_pos = move;
         }
