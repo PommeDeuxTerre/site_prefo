@@ -242,22 +242,25 @@ function get_pacman_move(cur_pos)
 async function pacman_move()
 {
     var move;
+    var cur_pos;
     while (true)
     {
         //put delay to slow down the pacman
         await sleep(100)
+        //stock the value of the global variable to avoid change during calcul
+        cur_pos = cursor_pos;
         //init ro reinit the following lists
         explored_nodes = []
         nun_explored_nodes = []
-        nun_explored_nodes[pacman_pos] = new Node(pacman_pos,0,get_distance(cursor_pos, pacman_pos))
+        nun_explored_nodes[pacman_pos] = new Node(pacman_pos,0,get_distance(cur_pos, pacman_pos))
 
         //if the cursor is on the grid but not on the pacman
-        if (cursor_pos!=null && cursor_pos!=pacman_pos)
+        if (cur_pos!=null && cur_pos!=pacman_pos)
         {
             //remove the pacman in the html
             document.getElementById(pacman_pos).style.backgroundColor="#8d99ae"
             //get the square for the pacman
-            move = pacman_pos+get_move_dir[get_pacman_move(cursor_pos)]
+            move = pacman_pos+get_move_dir[get_pacman_move(cur_pos)]
             //put the pacman in the html
             document.getElementById(move).style.backgroundColor="yellow"
             //update the pacman position
