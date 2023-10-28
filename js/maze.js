@@ -1,9 +1,16 @@
-var grid = []
-var moves = [top_wall,left_wall,right_wall,bottom_wall];
-var opposite_moves = [bottom_wall,right_wall,left_wall,top_wall];
-var get_move_dir = [-10,-1,1,10]
-var inverse_move = [3,2,1,0]
-var pacman_pos = 45;
+let grid = []
+let moves = [top_wall,left_wall,right_wall,bottom_wall];
+let opposite_moves = [bottom_wall,right_wall,left_wall,top_wall];
+let get_move_dir = [-10,-1,1,10]
+let inverse_move = [3,2,1,0]
+let pacman_pos = 45;
+
+let explored_nodes = []
+let nun_explored_nodes = []
+
+let cursor_pos = null;
+
+let starter_index;
 
 class Node{
     constructor(index,dis_pac,dis_cur,previous_node)
@@ -16,20 +23,15 @@ class Node{
     }
 }
 
-var explored_nodes = []
-var nun_explored_nodes = []
-
-var cursor_pos = null;
-
 function set_grid()
 {
     const maze_html = document.createElement("div",id="maze")
     maze_html.className="maze"
-    for (var i=0;i<10;i++)
+    for (let i=0;i<10;i++)
     {
         const line_html = document.createElement("div")
         line_html.className="line_maze"
-        for (var j=0;j<10;j++)
+        for (let j=0;j<10;j++)
         {
             const square = document.createElement("div")
             square.addEventListener("mouseover",function click(){cursor_pos=this.id})
@@ -70,7 +72,7 @@ function right_wall(element)
 function get_moves(index)
 {
     //moves = 0000 in bin
-    var all_moves = 0;
+    let all_moves = 0;
     //up
     if (index > 9 && grid[index-10]==undefined)
     {
@@ -98,19 +100,19 @@ function get_moves(index)
 function play_random_move(index, all_moves)
 {
     //get the random move
-    var nb_moves = 0;
-    for (var i=0;i<4;i++)
+    let nb_moves = 0;
+    for (let i=0;i<4;i++)
     {
         if (all_moves & 2**i)
         {
             nb_moves++;
         }
     }
-    var move = get_random(nb_moves);
+    let move = get_random(nb_moves);
 
     //get the move
     nb_moves = 0;
-    for (var i=0;i<4;i++)
+    for (let i=0;i<4;i++)
     {
         if (all_moves & 2**i)
         {
@@ -124,8 +126,8 @@ function play_random_move(index, all_moves)
     }
 
     //play the move on the html grid
-    var index_element = document.getElementById(index)
-    var next_element = document.getElementById(index+get_move_dir[move])
+    let index_element = document.getElementById(index)
+    let next_element = document.getElementById(index+get_move_dir[move])
     grid[index+get_move_dir[move]] = 0;
     moves[move](index_element)
     opposite_moves[move](next_element)
@@ -135,8 +137,8 @@ function play_random_move(index, all_moves)
 //generate the maze html and js
 function maze_generator(index)
 {
-    var all_moves = get_moves(index)
-    var move;
+    let all_moves = get_moves(index)
+    let move;
     while (all_moves!=0)
     {
         move = play_random_move(index, all_moves);
@@ -162,9 +164,9 @@ function sleep(ms) {
 //A* get the index of the nun-explored node with the lowest heuristic(more close to the pac and to the cursor)
 function get_best_node()
 {
-    var best_heur = null;
-    var best_node = null;
-    for (var i=0;i<100;i++)
+    let best_heur = null;
+    let best_node = null;
+    for (let i=0;i<100;i++)
     {
         if (nun_explored_nodes[i] && (best_heur==null || nun_explored_nodes[i].heuristic>best_heur))
         {
@@ -178,10 +180,11 @@ function get_best_node()
 //A*
 function explore_node(node_index,cur_pos)
 {
-    var previous_node = nun_explored_nodes[node_index]
-    var next_node;
+    let previous_node = nun_explored_nodes[node_index]
+    console.log(previous_node)
+    let next_node;
     //check one by one the nodes close to the one we explore
-    for (var i=0;i<4;i++)
+    for (let i=0;i<4;i++)
     {
         //get the node
         next_node = nun_explored_nodes[node_index+get_move_dir[i]]
@@ -208,13 +211,13 @@ function explore_node(node_index,cur_pos)
 function backtrack(index)
 {
     //get the node just after the pac in the path
-    var node = nun_explored_nodes[index];
+    let node = nun_explored_nodes[index];
     while (node.previous_node.previous_node!=undefined)
     {
         node = node.previous_node;
     }
     //get the move link to the node
-    for (var i=0;i<4;i++)
+    for (let i=0;i<4;i++)
     {
         if (node.previous_node.index+get_move_dir[i]==node.index)    
         {
@@ -225,15 +228,28 @@ function backtrack(index)
 
 function get_pacman_move(cur_pos)
 {
-    var result=false;
-    var best_node;
+    let result=false;
+    let best_node;
+    let temp_counter = 0;
     //while cursor node not found
-    while (result==false)
+    while (result==false && temp_counter<10000)
     {
         //get the node with the best heuristic
         best_node = get_best_node();
         //explore the close node of the previous
         result = explore_node(best_node,cur_pos);
+        temp_counter++;
+    }
+    //pseudo fix the bug
+    if (temp_counter==10000)
+    {
+        for (let i=0;i<4;i++)
+        {
+            if (2**i & grid[pacman_pos])
+            {
+                return i;
+            }
+        }
     }
     //get the move that the pacman should play
     return backtrack(result);
@@ -241,12 +257,12 @@ function get_pacman_move(cur_pos)
 
 async function pacman_move()
 {
-    var move;
-    var cur_pos;
+    let move;
+    let cur_pos;
     while (true)
     {
         //put delay to slow down the pacman
-        await sleep(100)
+        await sleep(50)
         //stock the value of the global variable to avoid change during calcul
         cur_pos = cursor_pos;
         //init ro reinit the following lists
@@ -271,7 +287,7 @@ async function pacman_move()
 
 //create the maze
 set_grid()
-var starter_index = get_random(100);
+starter_index = get_random(100);
 grid[starter_index] = 0
 maze_generator(starter_index)
 //launch pacman
