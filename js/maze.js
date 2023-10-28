@@ -66,6 +66,7 @@ function right_wall(element)
 }
 
 
+//get the possible moves for the maze generator
 function get_moves(index)
 {
     //moves = 0000 in bin
@@ -93,6 +94,7 @@ function get_moves(index)
     return all_moves;
 }
 
+//maze generator
 function play_random_move(index, all_moves)
 {
     //get the random move
@@ -130,6 +132,7 @@ function play_random_move(index, all_moves)
     return move;
 }
 
+//generate the maze html and js
 function maze_generator(index)
 {
     var all_moves = get_moves(index)
@@ -144,6 +147,7 @@ function maze_generator(index)
     }
 }
 
+//A*
 function get_distance(a,b)
 {
     y = Math.round(a/10) - Math.round(b/10);
@@ -155,6 +159,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+//A* get the index of the nun-explored node with the lowest heuristic(more close to the pac and to the cursor)
 function get_best_node()
 {
     var best_heur = null;
@@ -170,39 +175,48 @@ function get_best_node()
     return best_node;
 }
 
+//A*
 function explore_node(node_index,cur_pos)
 {
     var previous_node = nun_explored_nodes[node_index]
     var next_node;
+    //check one by one the nodes close to the one we explore
     for (var i=0;i<4;i++)
     {
+        //get the node
         next_node = nun_explored_nodes[node_index+get_move_dir[i]]
+        //check if the node has been explored and if there is no wall
         if (next_node==undefined && explored_nodes[node_index+get_move_dir[i]]==undefined && 2**i & grid[node_index])
         {
+            //add the node to the nun explored node
             nun_explored_nodes[node_index+get_move_dir[i]] = new Node(node_index+get_move_dir[i],previous_node.dis_pac+1,get_distance(node_index+get_move_dir[i], cur_pos),previous_node)
             next_node = nun_explored_nodes[node_index+get_move_dir[i]]
+            //if node and cursor have the same index
             if (node_index+get_move_dir[i] == cur_pos)
             {
                 return node_index+get_move_dir[i];
             }
         }
     }
+    //add the main node to the explored and remove it from the nun explored
     explored_nodes[node_index] = nun_explored_nodes[node_index];
     nun_explored_nodes[node_index]=undefined;
     return false;
 }
 
+//A* when A* finish look for in the path the dir that the pac should follow
 function backtrack(index)
 {
+    //get the node just after the pac in the path
     var node = nun_explored_nodes[index];
-    var good_node = node;
-    while (good_node.previous_node.previous_node!=undefined)
+    while (node.previous_node.previous_node!=undefined)
     {
-        good_node = good_node.previous_node;
+        node = node.previous_node;
     }
+    //get the move link to the node
     for (var i=0;i<4;i++)
     {
-        if (good_node.previous_node.index+get_move_dir[i]==good_node.index)    
+        if (node.previous_node.index+get_move_dir[i]==node.index)    
         {
             return i
         }
@@ -213,11 +227,15 @@ function get_pacman_move(cur_pos)
 {
     var result=false;
     var best_node;
+    //while cursor node not found
     while (result==false)
     {
+        //get the node with the best heuristic
         best_node = get_best_node();
+        //explore the close node of the previous
         result = explore_node(best_node,cur_pos);
     }
+    //get the move that the pacman should play
     return backtrack(result);
 }
 
@@ -226,23 +244,32 @@ async function pacman_move()
     var move;
     while (true)
     {
+        //put delay to slow down the pacman
         await sleep(100)
+        //init ro reinit the following lists
         explored_nodes = []
         nun_explored_nodes = []
         nun_explored_nodes[pacman_pos] = new Node(pacman_pos,0,get_distance(cursor_pos, pacman_pos))
 
+        //if the cursor is on the grid but not on the pacman
         if (cursor_pos!=null && cursor_pos!=pacman_pos)
         {
+            //remove the pacman in the html
             document.getElementById(pacman_pos).style.backgroundColor="#8d99ae"
+            //get the square for the pacman
             move = pacman_pos+get_move_dir[get_pacman_move(cursor_pos)]
+            //put the pacman in the html
             document.getElementById(move).style.backgroundColor="yellow"
+            //update the pacman position
             pacman_pos = move;
         }
     }
 }
 
+//create the maze
 set_grid()
 var starter_index = get_random(100);
 grid[starter_index] = 0
 maze_generator(starter_index)
+//launch pacman
 pacman_move()
