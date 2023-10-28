@@ -177,14 +177,14 @@ function explore_node(node_index)
     for (var i=0;i<4;i++)
     {
         next_node = nun_explored_nodes[node_index+get_move_dir[i]]
-        if (next_node==undefined && explored_nodes[node_index+get_move_dir[i]]==undefined)
+        if (next_node==undefined && explored_nodes[node_index+get_move_dir[i]]==undefined && 2**i & grid[node_index])
         {
             nun_explored_nodes[node_index+get_move_dir[i]] = new Node(node_index+get_move_dir[i],previous_node.dis_pac+1,get_distance(node_index+get_move_dir[i], cursor_pos),previous_node)
             next_node = nun_explored_nodes[node_index+get_move_dir[i]]
-        }
-        if (node_index+get_move_dir[i] == cursor_pos)
-        {
-            return node_index+get_move_dir[i];
+            if (node_index+get_move_dir[i] == cursor_pos)
+            {
+                return node_index+get_move_dir[i];
+            }
         }
     }
     explored_nodes[node_index] = nun_explored_nodes[node_index];
@@ -200,13 +200,9 @@ function backtrack(index)
     {
         good_node = good_node.previous_node;
     }
-    if (good_node==node)
-    {
-        good_node = node.previous_node
-    }
     for (var i=0;i<4;i++)
     {
-        if (good_node.previous_node.index-get_move_dir[i]==good_node.index)    
+        if (good_node.previous_node.index+get_move_dir[i]==good_node.index)    
         {
             return i
         }
@@ -222,7 +218,6 @@ function get_pacman_move()
         best_node = get_best_node();
         result = explore_node(best_node);
     }
-    console.log(result)
     return backtrack(result);
 }
 
@@ -231,7 +226,7 @@ async function pacman_move()
     var move;
     while (true)
     {
-        await sleep(1000)
+        await sleep(100)
         explored_nodes = []
         nun_explored_nodes = []
         nun_explored_nodes[pacman_pos] = new Node(pacman_pos,0,get_distance(cursor_pos, pacman_pos))
