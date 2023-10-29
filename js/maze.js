@@ -181,7 +181,6 @@ function get_best_node()
 function explore_node(node_index,cur_pos)
 {
     let previous_node = nun_explored_nodes[node_index]
-    console.log(previous_node)
     let next_node;
     //check one by one the nodes close to the one we explore
     for (let i=0;i<4;i++)
@@ -197,6 +196,7 @@ function explore_node(node_index,cur_pos)
             //if node and cursor have the same index
             if (node_index+get_move_dir[i] == cur_pos)
             {
+                console.log(node_index+get_move_dir[i])
                 return node_index+get_move_dir[i];
             }
         }
@@ -204,7 +204,7 @@ function explore_node(node_index,cur_pos)
     //add the main node to the explored and remove it from the nun explored
     explored_nodes[node_index] = nun_explored_nodes[node_index];
     nun_explored_nodes[node_index]=undefined;
-    return false;
+    return -1;
 }
 
 //A* when A* finish look for in the path the dir that the pac should follow
@@ -212,6 +212,8 @@ function backtrack(index)
 {
     //get the node just after the pac in the path
     let node = nun_explored_nodes[index];
+    console.log(index)
+    console.log(node)
     while (node.previous_node.previous_node!=undefined)
     {
         node = node.previous_node;
@@ -228,28 +230,17 @@ function backtrack(index)
 
 function get_pacman_move(cur_pos)
 {
-    let result=false;
+    let result=-1;
     let best_node;
     let temp_counter = 0;
     //while cursor node not found
-    while (result==false && temp_counter<10000)
+    while (result==-1 && temp_counter<10000)
     {
         //get the node with the best heuristic
         best_node = get_best_node();
         //explore the close node of the previous
         result = explore_node(best_node,cur_pos);
         temp_counter++;
-    }
-    //pseudo fix the bug
-    if (temp_counter==10000)
-    {
-        for (let i=0;i<4;i++)
-        {
-            if (2**i & grid[pacman_pos])
-            {
-                return i;
-            }
-        }
     }
     //get the move that the pacman should play
     return backtrack(result);
