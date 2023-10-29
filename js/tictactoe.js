@@ -16,7 +16,7 @@ function bot_play()
     var square = document.getElementById(best_move[0])
 
     const img = document.createElement("img")
-    img.src="../img/cercle.png"
+    img.src="img/cercle.png"
     square.appendChild(img)
 
     grid[best_move] = player_turn;
@@ -35,7 +35,7 @@ function player_play(id)
     var square = document.getElementById(id)
 
     const img = document.createElement("img")
-    img.src="../img/cross.png"
+    img.src="img/cross.png"
     square.appendChild(img)
 }
 
@@ -64,7 +64,7 @@ function click(square)
     {
         game_finish=true;
         document.getElementById("game_state").innerHTML = "Perdu"
-        location.href = "../expo/expo.html";
+        location.href = "home/home.html";
     }
     if (is_draw(grid))
     {
