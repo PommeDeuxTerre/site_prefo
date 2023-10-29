@@ -273,6 +273,25 @@ async function pacman_move()
             //update the pacman position
             pacman_pos = move;
         }
+        //check if the pacman is in a corner and on the cursor
+        if (cur_pos==pacman_pos)
+        {
+            switch (pacman_pos)
+            {
+                case 0:
+                    location.href = "../entreprise/interview.html";
+                    break;
+                case 9:
+                    location.href = "../entreprise/rapport.html";
+                    break;
+                case 90:
+                    location.href = "../expo/expo.html";
+                    break;
+                case 99:
+                    location.href = "../expo/galerie.html";
+                    break;
+            }
+        }
     }
 }
 
