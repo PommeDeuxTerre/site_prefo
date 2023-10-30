@@ -8,8 +8,13 @@ red dark : #d90429
 .grid_ttt {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .line_ttt {
+    width: 468px;
+    height: 150px;
+    background-color: #8d99ae;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -18,8 +23,20 @@ red dark : #d90429
 .line_ttt > div {
     background-color: #8d99ae;
     border: 3px solid #d90429;
-    width: 9em;
-    height: 9em;
+    width: 150px;
+    height: 150px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.cercle {
+    background-image: url("../img/cercle.png");
+}
+.cross {
+    background-image: url("../img/cross.png");
+}
+.void:hover {
+    background-image: url("../img/cross.png");
+    opacity: .5;
 }
 /*reset button*/
 #button-div {
