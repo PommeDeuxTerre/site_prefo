@@ -33,3 +33,9 @@ red dark : #d90429
     width: 25%;
     margin-left: 50%;
 }
+div.corner {
+    background-color: #ef233c;
+}
+div.pacman {
+    background-color: yellow;
+}
