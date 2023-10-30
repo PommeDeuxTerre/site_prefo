@@ -30,8 +30,6 @@ red dark : #d90429
     align-items: center;
     justify-content: center;
 }
-.maze_menu > .first{
-}
 .maze_menu > .second{
     margin-left: 9;
 }

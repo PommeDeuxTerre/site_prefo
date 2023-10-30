@@ -29,13 +29,13 @@ red dark : #d90429
     background-repeat: no-repeat;
 }
 .cercle {
-    background-image: url("../img/cercle.png");
+    background-image: url("../img/cercle.webp");
 }
 .cross {
-    background-image: url("../img/cross.png");
+    background-image: url("../img/cross.webp");
 }
 .void:hover {
-    background-image: url("../img/cross.png");
+    background-image: url("../img/cross.webp");
     opacity: .5;
 }
 /*reset button*/
