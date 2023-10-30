@@ -34,8 +34,10 @@ red dark : #d90429
     margin-left: 50%;
 }
 div.corner {
-    background-color: #ef233c;
+    background-image: url("../img/cherry.webp");
+    background-size: 100%;
 }
 div.pacman {
-    background-color: yellow;
+    background-image: url("../img/fantom.webp");
+    background-size: 100%;
 }
