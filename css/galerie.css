@@ -1,3 +1,10 @@
+/* colors
+black : #2b2d42
+grey : #8d99ae
+white : #edf2f4
+red clear : #ef233c
+red dark : #d90429
+*/
 #images {
     display: flex;
     flex-direction: row;
