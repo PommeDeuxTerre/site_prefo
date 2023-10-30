@@ -1,0 +1,8 @@
+#rapport {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.paragraphe-rapport {
+    max-width: 75%;
+}
