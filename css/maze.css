@@ -14,3 +14,15 @@
     width: 3em;
     height: 3em;
 }
+.maze_menu {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.maze_menu > .first{
+    width: 25%;
+}
+.maze_menu > .second{
+    width: 25%;
+    margin-left: 50%;
+}

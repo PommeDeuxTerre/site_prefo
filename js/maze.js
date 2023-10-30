@@ -37,6 +37,10 @@ function set_grid()
             square.addEventListener("mouseover",function click(){cursor_pos=this.id})
             square.addEventListener("mouseout",function click(){cursor_pos=null})
             square.id = ""+(i*10+j)
+            if ((i==0 || i==9) && (j==0 || j==9))
+            {
+                square.style.backgroundColor="#ef233c"
+            }
             line_html.appendChild(square)
         }
         maze_html.appendChild(line_html)
@@ -265,7 +269,12 @@ async function pacman_move()
         if (cur_pos!=null && cur_pos!=pacman_pos)
         {
             //remove the pacman in the html
-            document.getElementById(pacman_pos).style.backgroundColor="#8d99ae"
+            var square_pac_prev = document.getElementById(pacman_pos)
+            square_pac_prev.style.backgroundColor="#8d99ae"
+            if (square_pac_prev.className=="corner")
+            {
+                square_pac_prev.style.backgroundColor="#ef233c"
+            }
             //get the square for the pacman
             move = pacman_pos+get_move_dir[get_pacman_move(cur_pos)]
             //put the pacman in the html
