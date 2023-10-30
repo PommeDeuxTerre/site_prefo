@@ -21,17 +21,19 @@ red dark : #d90429
     width: 3em;
     height: 3em;
 }
+.void_line {
+    width: 500px;
+}
 .maze_menu {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
+    justify-content: center;
 }
 .maze_menu > .first{
-    width: 25%;
 }
 .maze_menu > .second{
-    width: 25%;
-    margin-left: 50%;
+    margin-left: 9;
 }
 div.corner {
     background-image: url("../img/cherry.webp");
