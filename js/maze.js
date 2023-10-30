@@ -40,6 +40,7 @@ function set_grid()
             if ((i==0 || i==9) && (j==0 || j==9))
             {
                 square.style.backgroundColor="#ef233c"
+                square.className = "corner"
             }
             line_html.appendChild(square)
         }
