@@ -1,9 +1,12 @@
+const WIDTH = 11
+const HEIGHT = 11
+
 let grid = []
 let moves = [top_wall,left_wall,right_wall,bottom_wall];
 let opposite_moves = [bottom_wall,right_wall,left_wall,top_wall];
-let get_move_dir = [-10,-1,1,10]
+let get_move_dir = [-WIDTH,-1,1,WIDTH]
 let inverse_move = [3,2,1,0]
-let pacman_pos = 45;
+let pacman_pos = 60;
 
 let explored_nodes = []
 let nun_explored_nodes = []
@@ -27,17 +30,17 @@ function set_grid()
 {
     const maze_html = document.createElement("div",id="maze")
     maze_html.className="maze"
-    for (let i=0;i<10;i++)
+    for (let i=0;i<HEIGHT;i++)
     {
         const line_html = document.createElement("div")
         line_html.className="line_maze"
-        for (let j=0;j<10;j++)
+        for (let j=0;j<WIDTH;j++)
         {
             const square = document.createElement("div")
             square.addEventListener("mouseover",function click(){cursor_pos=this.id})
             square.addEventListener("mouseout",function click(){cursor_pos=null})
-            square.id = ""+(i*10+j)
-            if ((i==0 || i==9) && (j==0 || j==9))
+            square.id = ""+(i*WIDTH+j)
+            if ((i==0 || i==HEIGHT-1) && (j==0 || j==WIDTH-1))
             {
                 square.classList.add("corner")
             }
@@ -75,25 +78,29 @@ function right_wall(element)
 //get the possible moves for the maze generator
 function get_moves(index)
 {
+    if (index==0 || index==WIDTH-1 || index==WIDTH*(HEIGHT-1) || index==WIDTH*HEIGHT-1)
+    {
+        return 0;
+    }
     //moves = 0000 in bin
     let all_moves = 0;
     //up
-    if (index > 9 && grid[index-10]==undefined)
+    if (index >= WIDTH && grid[index-WIDTH]==undefined)
     {
         all_moves |= 1;
     }
     //left
-    if (index%10!=0 && grid[index-1]==undefined)
+    if (index%WIDTH!=0 && grid[index-1]==undefined)
     {
         all_moves |= 2;
     }
     //right
-    if (index%10!=9 && grid[index+1]==undefined)
+    if (index%WIDTH!=WIDTH-1 && grid[index+1]==undefined)
     {
         all_moves |= 4;
     }
     //down
-    if (index < 90 && grid[index+10]==undefined)
+    if (index < (HEIGHT-1)*WIDTH && grid[index+WIDTH]==undefined)
     {
         all_moves |= 8;
     }
@@ -170,7 +177,7 @@ function get_best_node()
 {
     let best_heur = null;
     let best_node = null;
-    for (let i=0;i<100;i++)
+    for (let i=0;i<WIDTH*HEIGHT;i++)
     {
         if (nun_explored_nodes[i] && (best_heur==null || nun_explored_nodes[i].heuristic>best_heur))
         {
@@ -238,7 +245,7 @@ function get_pacman_move(cur_pos)
     let best_node;
     let temp_counter = 0;
     //while cursor node not found
-    while (result==-1 && temp_counter<10000)
+    while (result==-1)
     {
         //get the node with the best heuristic
         best_node = get_best_node();
@@ -279,32 +286,36 @@ async function pacman_move()
             //update the pacman position
             pacman_pos = move;
         }
-        //check if the pacman is in a corner and on the cursor
-        if (cur_pos==pacman_pos)
+        //check if the pacman is in a corner
+        switch (pacman_pos)
         {
-            switch (pacman_pos)
-            {
-                case 0:
-                    location.href = "../entreprise/rapport.html";
-                    break;
-                case 9:
-                    location.href = "../entreprise/interview.html";
-                    break;
-                case 90:
-                    location.href = "../expo/expo.html";
-                    break;
-                case 99:
-                    location.href = "../expo/galerie.html";
-                    break;
-            }
+            case 0:
+                location.href = "../entreprise/rapport.html";
+                break;
+            case WIDTH-1:
+                location.href = "../entreprise/interview.html";
+                break;
+            case (HEIGHT-1)*WIDTH:
+                location.href = "../expo/expo.html";
+                break;
+            case HEIGHT*WIDTH-1:
+                location.href = "../expo/galerie.html";
+                break;
         }
     }
 }
 
 //create the maze
 set_grid()
-starter_index = get_random(100);
+//avoid to start in a corner
+starter_index = get_random(WIDTH*HEIGHT);
+if (starter_index==0 || starter_index==WIDTH-1 || starter_index==(HEIGHT-1)*WIDTH || starter_index==WIDTH*HEIGHT-1)
+{
+    starter_index=(starter_index+2)%(WIDTH*HEIGHT)
+}
 grid[starter_index] = 0
+console.log(grid)
 maze_generator(starter_index)
+console.log("test")
 //launch pacman
 pacman_move()
