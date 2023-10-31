@@ -39,15 +39,14 @@ function set_grid()
             square.id = ""+(i*10+j)
             if ((i==0 || i==9) && (j==0 || j==9))
             {
-                square.style.backgroundColor="#ef233c"
-                square.className = "corner"
+                square.classList.add("corner")
             }
             line_html.appendChild(square)
         }
         maze_html.appendChild(line_html)
     }
     document.body.appendChild(maze_html)
-    document.getElementById(pacman_pos).style.backgroundColor="yellow"
+    document.getElementById(pacman_pos).classList.add("pacman")
 }
 
 function get_random(possibilities_number)
@@ -271,15 +270,12 @@ async function pacman_move()
         {
             //remove the pacman in the html
             var square_pac_prev = document.getElementById(pacman_pos)
-            square_pac_prev.style.backgroundColor="#8d99ae"
-            if (square_pac_prev.className=="corner")
-            {
-                square_pac_prev.style.backgroundColor="#ef233c"
-            }
+            square_pac_prev.classList.remove("pacman")
+            
             //get the square for the pacman
             move = pacman_pos+get_move_dir[get_pacman_move(cur_pos)]
             //put the pacman in the html
-            document.getElementById(move).style.backgroundColor="yellow"
+            document.getElementById(move).classList.add("pacman")
             //update the pacman position
             pacman_pos = move;
         }
