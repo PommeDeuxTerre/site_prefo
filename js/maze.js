@@ -285,10 +285,10 @@ async function pacman_move()
             switch (pacman_pos)
             {
                 case 0:
-                    location.href = "../entreprise/interview.html";
+                    location.href = "../entreprise/rapport.html";
                     break;
                 case 9:
-                    location.href = "../entreprise/rapport.html";
+                    location.href = "../entreprise/interview.html";
                     break;
                 case 90:
                     location.href = "../expo/expo.html";
