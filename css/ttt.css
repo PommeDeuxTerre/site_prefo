@@ -5,11 +5,15 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+h1 {
+    margin: 1em;
+}
 .grid_ttt {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 8em;
 }
 .line_ttt {
     width: 468px;
