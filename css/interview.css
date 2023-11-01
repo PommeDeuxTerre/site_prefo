@@ -93,3 +93,23 @@ a.interview-link {
     text-align: center;
     font-size: 2em;
 }
+#up, #down {
+    text-align: center;
+    border: 0;
+    width: 30px;
+    height: 60px;
+    font-size: 2em;
+    background-color: #ef233c;
+    color: #2b2d42;
+    position: fixed;
+    right: 50px;
+}
+#up:hover, #down:hover {
+    background: linear-gradient(90deg, #ef233c, #d90429);
+}
+#down {
+    bottom: 0;
+}
+#up {
+    bottom: 60px;
+}
