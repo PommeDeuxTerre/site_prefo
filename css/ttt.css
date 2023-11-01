@@ -28,15 +28,36 @@ red dark : #d90429
     background-size: 100%;
     background-repeat: no-repeat;
 }
-.cercle {
+.line_ttt > div > div {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-size: 100%;
+    transition-duration: 1000ms;
+    transition-property: opacity;
+}
+/*cercle*/
+.cercle-img {
     background-image: url("../img/cercle.webp");
 }
-.cross {
+.cercle > .cercle-img {
+    opacity: 1;
+}
+.void > .cercle-img, .cross > .cercle-img{
+    opacity: 0;
+}
+/*cross*/
+.cross-img {
     background-image: url("../img/cross.webp");
 }
-.void:hover {
-    background-image: url("../img/cross.webp");
-    opacity: .5;
+.cross > .cross-img {
+    opacity: 1;
+}
+.void > .cross-img, .cercle > .cross-img{
+    opacity: 0;
+}
+.void > .cross-img:hover {
+    opacity: 0.5;
 }
 /*reset button*/
 #button-div {

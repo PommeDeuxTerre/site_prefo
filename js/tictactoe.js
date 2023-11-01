@@ -20,7 +20,8 @@ function bot_play()
     bot(grid, player_turn, best_move);
 
     var square = document.getElementById(best_move[0])
-    square.className = "cercle"
+    square.classList.remove("void")
+    square.classList.add("cercle")
 
     grid[best_move] = player_turn;
     player_turn = player_turn%2+1
@@ -36,7 +37,8 @@ function player_play(id)
     //update the html grid
     var square = document.getElementById(id)
 
-    square.className="cross"
+    square.classList.remove("void")
+    square.classList.add("cross")
 }
 
 async function click(square)
@@ -92,13 +94,9 @@ function reset()
     for (var i=1;i<9;i++)
     {
         square = document.getElementById(i)
-        square.className="void"
-        //reset images
-        var children = square.children
-        if (children[0])
-        {
-            square.removeChild(children[0])
-        }
+        square.classList.remove("cercle")
+        square.classList.remove("cross")
+        square.classList.add("void")
     }
     document.getElementById("game_state").innerHTML = "En cours";
 }
@@ -115,8 +113,14 @@ function set_grid()
         {
             const square = document.createElement("div")
             square.addEventListener("click",function(){click(this)})
-            square.className="void"
+            square.classList.add("void")
             square.id = ""+(i*3+j)
+            let img = document.createElement("div")
+            img.classList.add("cercle-img")
+            square.appendChild(img)
+            img = document.createElement("div")
+            img.classList.add("cross-img")
+            square.appendChild(img)
             line_html.appendChild(square)
         }
         grid_html.appendChild(line_html)
