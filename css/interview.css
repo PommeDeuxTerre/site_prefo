@@ -45,12 +45,16 @@ red dark : #d90429
     border-width: 2px;
 }
 .answer {
-    font-size: 2em;
+    font-size: 2.5em;
     text-align: end;
     max-width: 100%;
     width: 40%;
     margin-left: 40%;
     margin-right: 20%;
+    background-color: #ef233c;
+    color: #2b2d42;
+    border-radius: 50px;
+    padding: 20px;
 }
 #questions h3 {
     text-align: start;
@@ -60,6 +64,10 @@ red dark : #d90429
     margin-right: 40%;
     margin-top: 32px;
     margin-bottom: 32px;
+    background-color: #ef233c;
+    color: #2b2d42;
+    border-radius: 50px;
+    padding: 20px;
 }
 #interviewed > h2 {
     margin: 0;
