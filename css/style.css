@@ -36,7 +36,7 @@ nav[id="page-nav"] {
     flex-wrap: wrap;
     justify-content: flex-end;
 }
-nav[id="page-nav"] > a {
+nav[id="page-nav"] > a, .nav_button {
     text-align: center;
     text-decoration: none;
     font-size: 2em;
@@ -45,7 +45,7 @@ nav[id="page-nav"] > a {
     color: #2b2d42;
     background-color: #ef233c;
 }
-nav[id="page-nav"] > a:hover {
+nav[id="page-nav"] > a:hover, .nav_button:hover {
     background: linear-gradient(90deg, #ef233c, #d90429);
 }
 div[class="paragraphes"] {
