@@ -105,20 +105,28 @@ a.interview-link {
 #up, #down {
     text-align: center;
     border: 0;
-    width: 30px;
-    height: 60px;
+    height: 90px;
+    width: 135px;
     font-size: 2em;
-    background-color: #ef233c;
-    color: #2b2d42;
+    background-color: #2b2d42;
     position: fixed;
     right: 50px;
 }
-#up:hover, #down:hover {
-    background: linear-gradient(90deg, #ef233c, #d90429);
+#up:hover{
+    background-image: url("../img/up_dark.svg");
+}
+#down:hover{
+    background-image: url("../img/down_dark.svg");
 }
 #down {
     bottom: 0;
+    background-image: url("../img/down.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 #up {
-    bottom: 60px;
+    bottom: 90px;
+    background-image: url("../img/up.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
