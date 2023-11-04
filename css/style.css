@@ -20,18 +20,21 @@ body {
     background-color: #2b2d42;
 }
 h1 {
+    letter-spacing: 4px;
     color: #ef233c;
     text-align: center;
     font-size: 4em;
     font-weight: 800;
 }
 h2 {
+    letter-spacing: 3px;
     color: #ef233c;
     text-align: center;
     font-size: 3em;
     font-weight: 800;
 }
 h3 {
+    letter-spacing: 2px;
     color: #ef233c;
     text-align: center;
     font-size: 2.5em;
