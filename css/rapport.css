@@ -27,3 +27,7 @@ red dark : #d90429
     display: flex;
     justify-content: left;
 }
+#map {
+    width: 400px;
+    height: 400px;
+}
