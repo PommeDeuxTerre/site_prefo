@@ -46,6 +46,7 @@ red dark : #d90429
 }
 .answer {
     font-size: 2.5em;
+    font-weight: 600;
     text-align: end;
     max-width: 100%;
     width: 40%;

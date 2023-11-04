@@ -5,8 +5,18 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+@font-face {
+    font-family: "Comfortaa";
+    src: url(../fronts/Comfortaa_Regular.ttf);
+}
+@font-face {
+    font-family: "capsuula";
+    src: url(../fronts/Capsuula.ttf);
+}
 
 body {
+    font-family: "Comfortaa";
+    letter-spacing: 1px;
     background-color: #2b2d42;
 }
 h1 {
@@ -29,6 +39,8 @@ h3 {
     margin: 0.4em;
 }
 p {
+    font-family: "capsuula";
+    font-weight: 400;
     color: #edf2f4;
 }
 nav[id="page-nav"] {
@@ -54,9 +66,9 @@ div[class="paragraphes"] {
     align-items: center;
 }
 div[class="paragraphes"] > p {
-    width: 40em;
+    width: 896px;
     max-width: 100%;
-    font-size: 1.4em;
+    font-size: 2em;
     margin: 0.7em;
 }
 div[class="paragraphes"] > h3 {
