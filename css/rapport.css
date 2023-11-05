@@ -5,6 +5,13 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+p > a {
+    color: #ef233c;
+    text-decoration: none;
+}
+p > a:hover {
+    color: #d90429;
+}
 #rapport {
     display: flex;
     flex-direction: column;
