@@ -207,7 +207,6 @@ function explore_node(node_index,cur_pos)
             //if node and cursor have the same index
             if (node_index+get_move_dir[i] == cur_pos)
             {
-                console.log(node_index+get_move_dir[i])
                 return node_index+get_move_dir[i];
             }
         }
@@ -223,8 +222,6 @@ function backtrack(index)
 {
     //get the node just after the pac in the path
     let node = nun_explored_nodes[index];
-    console.log(index)
-    console.log(node)
     while (node.previous_node.previous_node!=undefined)
     {
         node = node.previous_node;
@@ -314,8 +311,6 @@ if (starter_index==0 || starter_index==WIDTH-1 || starter_index==(HEIGHT-1)*WIDT
     starter_index=(starter_index+2)%(WIDTH*HEIGHT)
 }
 grid[starter_index] = 0
-console.log(grid)
 maze_generator(starter_index)
-console.log("test")
 //launch pacman
 pacman_move()
