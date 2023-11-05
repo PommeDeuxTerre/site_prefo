@@ -1,5 +1,6 @@
 const nb_photos = 18;
 var photos_index = 0;
+var all_photos = []
 
 function next_photos()
 {
@@ -19,20 +20,43 @@ function previous_photos()
     photos_actualise()
 }
 
-function photos_actualise()
+async function photos_actualise(first=false)
 {
     //counter
     const galerie = document.getElementById("Galerie")
-    galerie.innerText = `Galerie (${photos_index}/${nb_photos})`
+    galerie.innerText = `Galerie (${photos_index+1}/${nb_photos})`
     //photos
     const photos = document.getElementById("photos");
     photos.innerHTML=""
-    for (var i=0;i<3;i-=-1)
+    if (first)
     {
-        var photo = document.createElement("img");
-        photo.src="../img/photos/"+(photos_index+i)%nb_photos+".jpg"
-        photo.className="photo_expo"
-        photos.appendChild(photo)
+        for (var i=0;i<3;i-=-1)
+        {
+            var photo = document.createElement("img");
+            photo.src="../img/photos/"+(photos_index+i)%nb_photos+".webp"
+            photo.className="photo_expo"
+            photos.appendChild(photo)
+            all_photos[(photos_index+i)%nb_photos]=photo
+        }
+    }
+    else{
+        photos.appendChild(all_photos[photos_index])
+        photos.appendChild(all_photos[(photos_index+1)%nb_photos])
+        photos.appendChild(all_photos[(photos_index+2)%nb_photos])
     }
 }
-photos_actualise()
+
+async function preload()
+{
+    var photo
+    const void_div = document.getElementById("void")
+    for (var i=0;i<nb_photos;i++)
+    {
+        photo = document.createElement("img");
+        photo.src=`../img/photos/${i}.webp`
+        photo.className="photo_expo"
+        all_photos[(photos_index+i)%nb_photos]=photo
+    }
+}
+photos_actualise(first=true)
+preload()
