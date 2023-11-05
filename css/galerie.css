@@ -30,7 +30,17 @@ red dark : #d90429
     font-size: 4em;
     background-color: #ef233c;
     color: #2b2d42;
+    background-size: 100%;
 }
-#next:hover, #previous:hover {
-    background: linear-gradient(90deg, #ef233c, #d90429);
+#next:hover {
+    background-image: url("../img/right.svg"), linear-gradient(90deg, #ef233c, #d90429);
+}
+#previous:hover {
+    background-image: url("../img/left.svg"), linear-gradient(90deg, #ef233c, #d90429);
+}
+#next {
+    background-image: url("../img/right.svg");
+}
+#previous {
+    background-image: url("../img/left.svg");
 }
