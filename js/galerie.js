@@ -58,5 +58,7 @@ async function preload()
         all_photos[(photos_index+i)%nb_photos]=photo
     }
 }
-photos_actualise(first=true)
-preload()
+window.onload = function() {
+    photos_actualise(first=true)
+    preload()
+}
