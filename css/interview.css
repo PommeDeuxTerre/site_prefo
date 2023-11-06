@@ -98,9 +98,12 @@ div.interview-link {
 }
 a.interview-link {
     margin: 2em;
-    color: #d90429;
+    color: #ef233c;
     text-align: center;
     font-size: 2em;
+}
+a.interview-link:hover {
+	color:#d90429;
 }
 #up, #down {
     text-align: center;
