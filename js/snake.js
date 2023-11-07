@@ -72,6 +72,17 @@ async function snake_move()
 
 document.onkeydown = function(e) {
     console.log(e.key)
+    switch (e.key)
+    {
+        case "ArrowUp":
+            snake_direction = 0
+        case "ArrowLeft":
+            snake_direction = 0
+        case "Arrow":
+            snake_direction = 0
+        case "ArrowUp":
+            snake_direction = 0
+    }
 }
 
 init_grid()
