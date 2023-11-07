@@ -70,6 +70,10 @@ async function snake_move()
     }
 }
 
+document.onkeydown = function(e) {
+    console.log(e.key)
+}
+
 init_grid()
 show_snake()
 snake_move()
