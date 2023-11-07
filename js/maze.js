@@ -34,6 +34,16 @@ function set_grid()
     {
         const line_html = document.createElement("div")
         line_html.className="line_maze"
+        line_html.id=`line_square${i}`
+        var vertical_line = document.createElement('div')
+        vertical_line.classList.add("vertical_line")
+        line_html.appendChild(vertical_line)
+        const interline_html = document.createElement("div")
+        interline_html .className="interline_maze"
+        var corner_line = document.createElement('div')
+        corner_line.classList.add("corner_line")
+        interline_html.appendChild(corner_line)
+        interline_html.id=`interline${i}`
         for (let j=0;j<WIDTH;j++)
         {
             const square = document.createElement("div")
@@ -44,10 +54,35 @@ function set_grid()
             {
                 square.classList.add("corner")
             }
+            var vertical_line = document.createElement('div')
+            vertical_line.classList.add("vertical_line")
             line_html.appendChild(square)
+            line_html.appendChild(vertical_line)
+            var horizontal_line = document.createElement('div')
+            horizontal_line.classList.add("horizontal_line")
+            var corner_line = document.createElement('div')
+            corner_line.classList.add("corner_line")
+            interline_html.appendChild(horizontal_line)
+            interline_html.appendChild(corner_line)
         }
+        maze_html.appendChild(interline_html)
         maze_html.appendChild(line_html)
     }
+    const interline_html = document.createElement("div")
+    interline_html .className="interline_maze"
+    var corner_line = document.createElement('div')
+    corner_line.classList.add("corner_line")
+    interline_html.appendChild(corner_line)
+    for (let j=0;j<WIDTH;j++)
+    {
+        var horizontal_line = document.createElement('div')
+        horizontal_line.classList.add("horizontal_line")
+        var corner_line = document.createElement('div')
+        corner_line.classList.add("corner_line")
+        interline_html.appendChild(horizontal_line)
+        interline_html.appendChild(corner_line)
+    }
+    maze_html.appendChild(interline_html)
     document.body.appendChild(maze_html)
     document.getElementById(pacman_pos).classList.add("pacman")
 }
@@ -57,21 +92,32 @@ function get_random(possibilities_number)
     return Math.floor(Math.random()*possibilities_number)
 }
 
-function top_wall(element)
+function top_wall(index)
 {
-    element.style.borderTopColor = "#8d99ae";
+    //get the y
+    var y = Math.floor(index/WIDTH)
+    var x = index%WIDTH
+    var line = document.getElementById(`interline${y}`).getElementsByClassName("horizontal_line")[x]
+    line.style.backgroundColor = "#8d99ae"
 }
-function bottom_wall(element)
+function bottom_wall(index)
 {
-    element.style.borderBottomColor = "#8d99ae";
+    //get the y
+    var y = Math.floor(index/WIDTH)
+    var x = index%WIDTH
+    var line = document.getElementById(`interline${y+1}`).getElementsByClassName("horizontal_line")[x]
+    line.style.backgroundColor = "#8d99ae"
 }
-function left_wall(element)
+function left_wall(index)
 {
-    element.style.borderLeftColor = "#8d99ae";
+    //get the y
+    var y = Math.floor(index/WIDTH)
+    var x = index%WIDTH
+    var line = document.getElementById(`line_square${y}`).getElementsByClassName("vertical_line")[x]
+    line.style.backgroundColor = "#8d99ae"
 }
-function right_wall(element)
+function right_wall(index)
 {
-    element.style.borderRightColor = "#8d99ae";
 }
 
 
@@ -140,8 +186,8 @@ function play_random_move(index, all_moves)
     let index_element = document.getElementById(index)
     let next_element = document.getElementById(index+get_move_dir[move])
     grid[index+get_move_dir[move]] = 0;
-    moves[move](index_element)
-    opposite_moves[move](next_element)
+    moves[move](index)
+    opposite_moves[move](index+get_move_dir[move])
     return move;
 }
 
