@@ -5,23 +5,36 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+@font-face {
+    font-family: "Comfortaa";
+    src: url(../fronts/Comfortaa_Regular.ttf);
+}
+@font-face {
+    font-family: "capsuula";
+    src: url(../fronts/Capsuula.ttf);
+}
 
 body {
+    font-family: "Comfortaa";
+    letter-spacing: 1px;
     background-color: #2b2d42;
 }
 h1 {
+    letter-spacing: 4px;
     color: #ef233c;
     text-align: center;
     font-size: 4em;
     font-weight: 800;
 }
 h2 {
+    letter-spacing: 3px;
     color: #ef233c;
     text-align: center;
     font-size: 3em;
     font-weight: 800;
 }
 h3 {
+    letter-spacing: 2px;
     color: #ef233c;
     text-align: center;
     font-size: 2.5em;
@@ -29,6 +42,8 @@ h3 {
     margin: 0.4em;
 }
 p {
+    font-family: "capsuula";
+    font-weight: 400;
     color: #edf2f4;
 }
 nav[id="page-nav"] {
@@ -36,16 +51,16 @@ nav[id="page-nav"] {
     flex-wrap: wrap;
     justify-content: flex-end;
 }
-nav[id="page-nav"] > a {
+nav[id="page-nav"] > a, .nav_button {
     text-align: center;
     text-decoration: none;
     font-size: 2em;
     padding: 14px ;
-    width: 4em;
+    width: 5em;
     color: #2b2d42;
     background-color: #ef233c;
 }
-nav[id="page-nav"] > a:hover {
+nav[id="page-nav"] > a:hover, .nav_button:hover {
     background: linear-gradient(90deg, #ef233c, #d90429);
 }
 div[class="paragraphes"] {
@@ -54,9 +69,9 @@ div[class="paragraphes"] {
     align-items: center;
 }
 div[class="paragraphes"] > p {
-    width: 40em;
+    width: 896px;
     max-width: 100%;
-    font-size: 1.4em;
+    font-size: 2em;
     margin: 0.7em;
 }
 div[class="paragraphes"] > h3 {

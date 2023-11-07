@@ -6,6 +6,9 @@
     <title>Rapport</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/rapport.css">
+    <!--for the map-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.2.2/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v7.2.2/dist/ol.js"></script>
 </head>
 <body>
     <nav id="page-nav">
@@ -18,11 +21,17 @@
 	<h1>rapport</h1>
     <div id="rapport">
         <h2>Recherche</h2>
-        <p>Pour trouver un développeur web à interviewer, j'ai demandé à mes proches si ils connaissaient quelqu'un qui travail dans le développement web. J'ai un peu galéré mais j'ai finit par trouver quelqu'un (une connaissance d'une connaissance) qui a accepté de se faire interviewer, je lui ai donc envoyé un email avec les questions et une fois les réponses reçus, il ne me restait plus que la mise en place des questions-réponses sur le site</p>
+        <p>Pour trouver un développeur web à interviewer, j'ai demandé à mes proches si ils connaissaient quelqu'un qui travail dans le développement web. J'ai un peu galéré mais j'ai finit par trouver quelqu'un (une connaissance d'une connaissance) qui a accepté de se faire interviewer, je lui ai donc envoyé un email avec les questions et une fois les réponses reçus, je les ai mises en page avec une partie sur cette et page et l'autre partie dans la page <a href="interview.html">Interview</a></p>
         <h2>entreprise</h2>
         <h3>Nom</h3>
         <p>Satoris</p>
         <h3>Coordonnées</h3>
+        <p>
+            Avenue Winston Churchill 228, bt 1
+            1180 BRUXELLES Belgium
+        </p>
+        <div id="map"></div>
+        <script type="text/javascript" src="../js/map.js"></script>
         <h3>Activité principale</h3>
         <p>Création d'application web et mobiles</p>
         <h3>Nombre de membres du personnel</h3>
@@ -30,14 +39,16 @@
         <h3>Organigramme</h3>
         <p>CTO, font lead</p>
         <h2>Interview</h2>
-        <a href="interview.html">L'interview</a>
+        <div id="Interview">
+            <a href="../entreprise/interview.html" class="nav_button">Interview</a>
+        </div>
         <h2>Confirmation du choix d'orientation</h2>
         <h3>Éléments positifs</h3>
         <p>Etant très curieux et adorant apprendre, l'interview ma grandement conforté dans l'idée de devenir développeur.</p>
         <h3>Éléments négatifs</h3>
-        <p>En revenche, la sensibilité au design et à l'expérience utilisateur ne fais actuellement pas partie de mes compétences.</p>
+        <p>En revenche, la sensibilité au design et à l'expérience utilisateur ne fais actuellement pas partie de mes compétences et semble être une partie importante ou à minima intéréssante à avoir</p>
         <h2>Conclusion</h2>
-        <p>L'interview m'a montré que j'avais une personnalité et des compétences correspondant bien au métier de dev, cependant elle m'as aussi permis de me rendre compte qu'il y avait des éléments important dans le métier de dev que je ne connaissait pas tel que le design dans lequels je ne suis pas compétent et qu'il faudras que je travaille de mon côté, mais ayant éxpérimenté avec la création du site je me rend compte que j'aime bien et ça m'encourage dans mon choix</p>
+        <p>L'interview m'a montré que j'avais une personnalité et des compétences correspondant bien au métier de dev, cependant elle m'a aussi permis de me rendre compte qu'il y avait des éléments importants dans le métier de dev que je ne connaissais pas tel que le design dans lequel je ne me sens pas spécialement compétent et sur lesquelles il faudra que je travaille de mon côté, mais ayant pu expérimenter avec la création du site je me rend compte que j'aime également bien cette partie et ça m'encourage dans mon choix de devenir développeur web</p>
     </div>
 </body>
 </html>

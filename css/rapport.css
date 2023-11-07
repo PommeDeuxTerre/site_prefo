@@ -5,6 +5,13 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+p > a {
+    color: #ef233c;
+    text-decoration: none;
+}
+p > a:hover {
+    color: #d90429;
+}
 #rapport {
     display: flex;
     flex-direction: column;
@@ -21,14 +28,18 @@ red dark : #d90429
     max-width: 750px;
     width: 75%;
 }
-#rapport > a {
-    color: #d90429;
-    text-decoration: none;
-    font-size: 2em;
+#rapport > h2 {
     max-width: 750px;
     width: 75%;
 }
-#rapport > a:hover {
-    color: #ef233c;
-    text-decoration: underline;
+#Interview {
+    max-width: 750px;
+    width: 75%;
+    display: flex;
+    justify-content: left;
+}
+#map {
+    width: 400px;
+    height: 400px;
+    margin: 20px;
 }

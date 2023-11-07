@@ -46,6 +46,7 @@ red dark : #d90429
 }
 .answer {
     font-size: 2.5em;
+    font-weight: 600;
     text-align: end;
     max-width: 100%;
     width: 40%;
@@ -97,7 +98,38 @@ div.interview-link {
 }
 a.interview-link {
     margin: 2em;
-    color: #d90429;
+    color: #ef233c;
     text-align: center;
     font-size: 2em;
+}
+a.interview-link:hover {
+	color:#d90429;
+}
+#up, #down {
+    text-align: center;
+    border: 0;
+    height: 90px;
+    width: 135px;
+    font-size: 2em;
+    background-color: #2b2d42;
+    position: fixed;
+    right: 50px;
+}
+#up:hover{
+    background-image: url("../img/up_dark.svg");
+}
+#down:hover{
+    background-image: url("../img/down_dark.svg");
+}
+#down {
+    bottom: 0;
+    background-image: url("../img/down.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#up {
+    bottom: 90px;
+    background-image: url("../img/up.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
