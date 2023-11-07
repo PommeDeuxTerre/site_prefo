@@ -34,6 +34,7 @@ red dark : #d90429
     flex-wrap: nowrap;
     justify-content: center;
 }
+/*border left and right*/
 .interline_maze > .horizontal_line {
     width: 3em;
     height: 3px;
