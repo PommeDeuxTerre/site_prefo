@@ -83,7 +83,7 @@ function set_grid()
         interline_html.appendChild(corner_line)
     }
     maze_html.appendChild(interline_html)
-    document.body.appendChild(maze_html)
+    document.getElementById("maze").appendChild(maze_html)
     document.getElementById(pacman_pos).classList.add("pacman")
 }
 
