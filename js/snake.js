@@ -1,11 +1,12 @@
 const WIDTH = 20
 const HEIGHT = 10
 const DIRECTIONS = [-WIDTH,-1,1,WIDTH]
-var snakes = [110]
-var head = 0
+var snakes = [110, 109, 108, 107, 106]
+var head = 4
 var tail = 0
 //0 up, 1 left, 2 right, 3 down
-var snake_direction = 0
+var snake_direction = 1
+var last_snake_direction = 1
 
 function init_grid()
 {
@@ -19,7 +20,6 @@ function init_grid()
         for (var x=0;x<WIDTH;x++)
         {
             square = document.createElement("div")
-            square.classList.add("snake_square")
             square.id = y*WIDTH + x
             line.appendChild(square)
         }
@@ -29,16 +29,21 @@ function init_grid()
 
 function reset_snake()
 {
-    var snake = document.getElementsByClassName("snake")
-    for (var i=0;i<snake.length;i++)
+    var square;
+    for (var i=0;i<snakes.length;i++)
     {
-        snake[i].classList.remove("snake")
+        if (snakes[i]!=-1)
+        {
+            square = document.getElementById(snakes[i])
+            console.log(square)
+            square.classList.remove("snake")
+            console.log(square)
+        }
     }
 }
 
 function show_snake()
 {
-    reset_snake()
     for (var i=0;i<snakes.length;i++)
     {
         if (snakes[i]!=-1)
@@ -46,6 +51,18 @@ function show_snake()
             document.getElementById(snakes[i]).classList.add("snake")
         }
     }
+}
+
+function is_dead()
+{
+    for (var i=0;i<head-tail;i++)
+    {
+        if (snakes[tail+i]==snakes[head])
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 function sleep(ms) {
@@ -60,13 +77,31 @@ function make_snake_move(direction)
     tail++;
 }
 
+function kill_snake()
+{
+    var grid = document.getElementById("snake")
+    grid.innerHTML = ""
+    init_grid()
+    snakes = [110, 109, 108]
+    head = 2
+    tail = 0
+    snake_direction = 1
+}
+
 async function snake_move()
 {
     while (true)
     {
         await sleep(300)
+        reset_snake()
         make_snake_move(snake_direction)
+        last_snake_direction = snake_direction;
         show_snake()
+        snake_dead = is_dead()
+        if (snake_dead)
+        {
+            kill_snake()
+        }
     }
 }
 
@@ -75,13 +110,29 @@ document.onkeydown = function(e) {
     switch (e.key)
     {
         case "ArrowUp":
-            snake_direction = 0
+            if (last_snake_direction!=3)
+            {
+                snake_direction = 0
+            }
+            break
         case "ArrowLeft":
-            snake_direction = 0
-        case "Arrow":
-            snake_direction = 0
-        case "ArrowUp":
-            snake_direction = 0
+            if (last_snake_direction!=2)
+            {
+                snake_direction = 1
+            }
+            break
+        case "ArrowRight":
+            if (last_snake_direction!=1)
+            {
+                snake_direction = 2
+            }
+            break
+        case "ArrowDown":
+            if (last_snake_direction!=0)
+            {
+                snake_direction = 3
+            }
+            break
     }
 }
 
