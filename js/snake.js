@@ -37,9 +37,7 @@ function reset_snake()
         if (snakes[i]!=-1)
         {
             square = document.getElementById(snakes[i])
-            console.log(square)
             square.classList.remove("snake")
-            console.log(square)
         }
     }
 }
@@ -50,6 +48,7 @@ function show_snake()
     {
         if (snakes[i]!=-1)
         {
+            console.log(snakes[i])
             document.getElementById(snakes[i]).classList.add("snake")
         }
     }
@@ -86,8 +85,25 @@ function update_apple()
     }
 }
 
+function wall_check(direction)
+{
+    if (snakes[head]+DIRECTIONS[direction] > 199 || snakes[head]+DIRECTIONS[direction] < 0)
+    {
+        return 0;
+    }
+    return 1
+}
+
 function make_snake_move(direction)
 {
+    if (!wall_check(direction))
+    {
+        console.log("wall")
+        reset_snake()
+        kill_snake()
+        return
+    }
+    wall_check(direction)
     snakes[head+1]=snakes[head]+DIRECTIONS[direction]
     head++
     if (snakes[head]==apple_index)
@@ -130,7 +146,6 @@ async function snake_move()
 }
 
 document.onkeydown = function(e) {
-    console.log(e.key)
     switch (e.key)
     {
         case "ArrowUp":
