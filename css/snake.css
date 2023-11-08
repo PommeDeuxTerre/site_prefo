@@ -24,3 +24,6 @@ red dark : #d90429
 .snake_line > .snake {
     background-color: #ef233c;
 }
+.snake_line > .apple {
+    background-color: green;
+}

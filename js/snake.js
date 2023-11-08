@@ -4,6 +4,8 @@ const DIRECTIONS = [-WIDTH,-1,1,WIDTH]
 var snakes = [110, 109, 108, 107, 106]
 var head = 4
 var tail = 0
+var apple_index=10
+update_apple()
 //0 up, 1 left, 2 right, 3 down
 var snake_direction = 1
 var last_snake_direction = 1
@@ -51,6 +53,7 @@ function show_snake()
             document.getElementById(snakes[i]).classList.add("snake")
         }
     }
+    document.getElementById(apple_index).classList.add("apple")
 }
 
 function is_dead()
@@ -69,12 +72,33 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function update_apple()
+{
+    apple = document.getElementById(apple_index)
+    if (apple)
+    {
+        apple.classList.remove("apple")
+    }
+    apple_index = Math.floor(Math.random()*200)
+    while (snakes.includes(apple_index))
+    {
+        apple_index = Math.floor(Math.random()*200)
+    }
+}
+
 function make_snake_move(direction)
 {
     snakes[head+1]=snakes[head]+DIRECTIONS[direction]
     head++
-    snakes[tail]=-1
-    tail++;
+    if (snakes[head]==apple_index)
+    {
+        update_apple()
+    }
+    else
+    {
+        snakes[tail]=-1
+        tail++;
+    }
 }
 
 function kill_snake()
