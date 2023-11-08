@@ -5,9 +5,17 @@ white : #edf2f4
 red clear : #ef233c
 red dark : #d90429
 */
+#maze {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .maze {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 564px;
+    box-shadow: 0px 0px 20px 5px black;
 }
 /*normal lines*/
 .line_maze {
@@ -57,6 +65,10 @@ red dark : #d90429
 }
 .maze_menu > .second{
     margin-left: 9;
+    text-shadow: 4px 1px #88051b;
+}
+.maze_menu > .first{
+    text-shadow: 4px 1px #88051b;
 }
 div.corner {
     background-image: url("../img/cherry.webp");
