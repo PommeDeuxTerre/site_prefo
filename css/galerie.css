@@ -34,9 +34,11 @@ red dark : #d90429
 }
 #next:hover {
     background-image: url("../img/right.svg"), linear-gradient(90deg, #ef233c, #d90429);
+    cursor: pointer;
 }
 #previous:hover {
     background-image: url("../img/left.svg"), linear-gradient(90deg, #ef233c, #d90429);
+    cursor: pointer;
 }
 #next {
     background-image: url("../img/right.svg");
