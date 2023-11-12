@@ -1,7 +1,7 @@
 const nb_photos = 9;
 var photos_index = 0;
-var all_photos = []
-var directory = "photos_vertical"
+var all_photos = [[],[]]
+var directory = 0
 
 function next_photos()
 {
@@ -34,30 +34,54 @@ async function photos_actualise(first=false)
         for (var i=0;i<2;i-=-1)
         {
             var photo = document.createElement("img");
-            photo.src= `../img/${directory}/${(photos_index+i)%nb_photos}.webp`
+            photo.src= `../img/photos_vertical/${(photos_index+i)%nb_photos}.webp`
             photo.className="photo_expo"
             photos.appendChild(photo)
             all_photos[(photos_index+i)%nb_photos]=photo
         }
     }
     else{
-        photos.appendChild(all_photos[photos_index])
-        photos.appendChild(all_photos[(photos_index+1)%nb_photos])
+        photos.appendChild(all_photos[directory][photos_index])
+        photos.appendChild(all_photos[directory][(photos_index+1)%nb_photos])
     }
 }
 
 async function preload()
 {
     var photo
-    const void_div = document.getElementById("void")
     for (var i=0;i<nb_photos;i++)
     {
+        //vertical
         photo = document.createElement("img");
-        photo.src=`../img/${directory}/${i}.webp`
+        photo.src=`../img/photos_vertical/${i}.webp`
         photo.className="photo_expo"
-        all_photos[(photos_index+i)%nb_photos]=photo
+        all_photos[0][(photos_index+i)%nb_photos]=photo
+        //horizontal
+        photo = document.createElement("img");
+        photo.src=`../img/photos_horizontal/${i}.webp`
+        photo.className="photo_expo"
+        all_photos[1][(photos_index+i)%nb_photos]=photo
     }
 }
+
+function vertical_click()
+{
+    directory = 0
+    photos_actualise()
+    document.getElementById("vertical").classList.remove("clicked")
+    document.getElementById("horizontal").classList.remove("clicked")
+    document.getElementById("vertical").classList.add("clicked")
+}
+
+function horizontal_click()
+{
+    directory = 1
+    photos_actualise()
+    document.getElementById("vertical").classList.remove("clicked")
+    document.getElementById("horizontal").classList.remove("clicked")
+    document.getElementById("horizontal").classList.add("clicked")
+}
+
 window.onload = function() {
     photos_actualise(first=true)
     preload()

@@ -52,7 +52,7 @@ red dark : #d90429
     justify-content: center;
     align-items: center;
 }
-#left_lang, #right_lang {
+#vertical, #horizontal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,25 +64,25 @@ red dark : #d90429
     background-color: #ef233c;
     color: #2b2d42;
 }
-#left_lang {
+#vertical {
     border-top-left-radius: 30%;
     border-bottom-left-radius: 30%;
     margin-left: 10px;
     margin-right: 0;
 }
-#left_lang > img, #right_lang > img {
+#vertical > img, #horizontal > img {
     width: 100%;
 }
-#right_lang {
+#horizontal {
     border-top-right-radius: 30%;
     border-bottom-right-radius: 30%;
     margin-left: 0;
     margin-right: 10px;
 }
-#left_lang:hover, #right_lang:hover {
+#vertical:hover, #horizontal:hover {
     background: linear-gradient(90deg, #ef233c, #d90429);
 }
-#interview > .clicked{
+#title_galerie > .clicked{
     background-color: #d90429;
     border-color: #ef233c;
     border-width: 2px;
