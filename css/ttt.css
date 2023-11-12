@@ -54,7 +54,7 @@ h1 {
 }
 /*cross*/
 .cross-img {
-    background-image: url("../img/cross.webp");
+    background-image: url("../img/cross.svg");
 }
 .cross > .cross-img {
     opacity: 1;
