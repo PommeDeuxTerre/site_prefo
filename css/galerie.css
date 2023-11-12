@@ -46,3 +46,44 @@ red dark : #d90429
 #previous {
     background-image: url("../img/left.svg");
 }
+#title_galerie {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#left_lang, #right_lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 1px;
+    border-color: #d90429;
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+    background-color: #ef233c;
+    color: #2b2d42;
+}
+#left_lang {
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
+    margin-left: 10px;
+    margin-right: 0;
+}
+#left_lang > img, #right_lang > img {
+    width: 100%;
+}
+#right_lang {
+    border-top-right-radius: 30%;
+    border-bottom-right-radius: 30%;
+    margin-left: 0;
+    margin-right: 10px;
+}
+#left_lang:hover, #right_lang:hover {
+    background: linear-gradient(90deg, #ef233c, #d90429);
+}
+#interview > .clicked{
+    background-color: #d90429;
+    border-color: #ef233c;
+    border-width: 2px;
+}
