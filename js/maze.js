@@ -32,20 +32,24 @@ function set_grid()
     maze_html.className="maze"
     for (let i=0;i<HEIGHT;i++)
     {
+        //init normal line
         const line_html = document.createElement("div")
         line_html.className="line_maze"
         line_html.id=`line_square${i}`
+        //add left border
         var vertical_line = document.createElement('div')
         vertical_line.classList.add("vertical_line")
         line_html.appendChild(vertical_line)
+        //init top border
         const interline_html = document.createElement("div")
-        interline_html .className="interline_maze"
+        interline_html.className="interline_maze"
         var corner_line = document.createElement('div')
         corner_line.classList.add("corner_line")
         interline_html.appendChild(corner_line)
         interline_html.id=`interline${i}`
         for (let j=0;j<WIDTH;j++)
         {
+            //init normal square
             const square = document.createElement("div")
             square.addEventListener("mouseover",function click(){cursor_pos=this.id})
             square.addEventListener("mouseout",function click(){cursor_pos=null})
@@ -54,12 +58,14 @@ function set_grid()
             {
                 square.classList.add("corner")
             }
+            //init vertical border between two normal squares
             var vertical_line = document.createElement('div')
             vertical_line.classList.add("vertical_line")
             vertical_line.addEventListener("mouseover",function click(){cursor_pos=i*WIDTH+j})
             vertical_line.addEventListener("mouseout",function click(){cursor_pos=null})
             line_html.appendChild(square)
             line_html.appendChild(vertical_line)
+            //make border between two normal lines
             var horizontal_line = document.createElement('div')
             horizontal_line.classList.add("horizontal_line")
             horizontal_line.addEventListener("mouseover",function click(){cursor_pos=i*WIDTH+j})
@@ -72,6 +78,7 @@ function set_grid()
         maze_html.appendChild(interline_html)
         maze_html.appendChild(line_html)
     }
+    //init bottom border
     const interline_html = document.createElement("div")
     interline_html .className="interline_maze"
     var corner_line = document.createElement('div')
@@ -122,7 +129,6 @@ function left_wall(index)
 }
 function right_wall(index)
 {
-    console.log(index)
     //get the y
     var y = Math.floor(index/WIDTH)
     var x = index%WIDTH
@@ -361,10 +367,14 @@ async function pacman_move()
 //create the maze
 set_grid()
 //avoid to start in a corner
-starter_index = get_random(WIDTH*HEIGHT);
-if (starter_index==0 || starter_index==WIDTH-1 || starter_index==(HEIGHT-1)*WIDTH || starter_index==WIDTH*HEIGHT-1)
+starter_index = get_random(WIDTH*HEIGHT-4)+1;
+if (starter_index>=WIDTH-1)
 {
-    starter_index=(starter_index+2)%(WIDTH*HEIGHT)
+    starter_index++
+}
+if (starter_index>=WIDTH*HEIGHT-WIDTH)
+{
+    starter_index++
 }
 grid[starter_index] = 0
 maze_generator(starter_index)
