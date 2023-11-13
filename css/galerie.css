@@ -80,6 +80,7 @@ red dark : #d90429
     margin-right: 10px;
 }
 #vertical:hover, #horizontal:hover {
+    cursor: pointer;
     background: linear-gradient(90deg, #ef233c, #d90429);
 }
 #title_galerie > .clicked{
