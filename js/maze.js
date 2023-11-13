@@ -56,6 +56,8 @@ function set_grid()
             }
             var vertical_line = document.createElement('div')
             vertical_line.classList.add("vertical_line")
+            vertical_line.addEventListener("mouseover",function click(){cursor_pos=i*WIDTH+j})
+            vertical_line.addEventListener("mouseout",function click(){cursor_pos=null})
             line_html.appendChild(square)
             line_html.appendChild(vertical_line)
             var horizontal_line = document.createElement('div')
@@ -120,6 +122,12 @@ function left_wall(index)
 }
 function right_wall(index)
 {
+    console.log(index)
+    //get the y
+    var y = Math.floor(index/WIDTH)
+    var x = index%WIDTH
+    var line = document.getElementById(`line_square${y}`).getElementsByClassName("vertical_line")[x+1]
+    line.style.backgroundColor = "#8d99ae"
 }
 
 
