@@ -25,6 +25,7 @@ h1 {
     text-align: center;
     font-size: 4em;
     font-weight: 800;
+    text-shadow: 4px 1px #88051b;
 }
 h2 {
     letter-spacing: 3px;
@@ -32,6 +33,7 @@ h2 {
     text-align: center;
     font-size: 3em;
     font-weight: 800;
+    text-shadow: 4px 1px #88051b;
 }
 h3 {
     letter-spacing: 2px;
