@@ -350,16 +350,16 @@ async function pacman_move()
         {
             case 0:
                 location.href = "../entreprise/rapport.html";
-                break;
+                return;
             case WIDTH-1:
                 location.href = "../entreprise/interview.html";
-                break;
+                return;
             case (HEIGHT-1)*WIDTH:
                 location.href = "../expo/expo.html";
-                break;
+                return;
             case HEIGHT*WIDTH-1:
                 location.href = "../expo/galerie.html";
-                break;
+                return;
         }
     }
 }
